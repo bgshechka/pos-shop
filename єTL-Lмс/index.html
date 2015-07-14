@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link type="text/css"  rel="stylesheet" href="smslider/css/smslider.css" />
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="./smslider/jquery.smslider.min.js"></script>
+</head>
+
+<body class="about">
+	<div class="navWrapper">
+		<div class="logo">
+			<a href="/" title="Доминанта"></a>
+		</div>
+		<ul class="mainNav">
+			<li><a href="#" class="navLink">Продукция</a></li>
+		    <li><a href="#" class="navLink">Где купить</a></li>
+		    <li><a href="#" class="navLink">О нас</a></li>
+		    <li><a href="#" class="navLink">Новости</a></li>
+		    <li><a href="#" class="navLink">Контакты</a></li>
+		</ul>
+	</div>
+
+	<div class="slider-container">
+		<div id="sm_slider">
+	    	<ul>
+		        <li><img src="images/slider.png" alt=""></li>
+		        <li>...</li>
+		        <li>...</li>
+		    </ul>
+		</div>
+	</div>
+	
+	<div class="mainWrapper">
+		<div class="main">	
+			<ul class="products">
+				<li><a href="">
+						<div class="product-thumbnail-container"><img src="images/1.png" alt=""></div>
+						<span class="product-name">Менюхолдер</span>
+						<div class="button button-invisible">КУПИТЬ</div>
+					</a>
+				</li>
+				<li><a href="">
+						<div class="product-thumbnail-container"><img src="images/1.png" alt=""></div>					
+						<span class="product-name">Настенный карман</span>	
+						<div class="button button-invisible">КУПИТЬ</div>
+					</a>
+					
+				</li>
+				<li><a href="">
+						<div class="product-thumbnail-container"><img src="images/1.png" alt=""></div>					
+						<span class="product-name">Ценникодержатель</span>
+						<div class="button button-invisible">КУПИТЬ</div>
+					</a>
+					
+				</li>
+				<li><a href="">
+						<div class="product-thumbnail-container"><img src="images/1.png" alt=""></div>					
+						<span class="product-name">Многое другое</span>	
+						<div class="button button-invisible">КУПИТЬ</div>
+					</a>
+					
+				</li>
+				<li><a href="">
+						<div class="product-thumbnail-container"><img src="images/1.png" alt=""></div>
+						<span class="product-name">Оргстекло</span>
+						<div class="button button-invisible">КУПИТЬ</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="logo-footer">
+			<a href="/" title="Доминанта"></a>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	$('#sm_slider').smSlider()
+	})
+</script>
+
+</html>

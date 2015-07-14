@@ -1,0 +1,300 @@
+/* reset browser styles */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.2;
+}
+ol { 
+	padding-left: 1.4em;
+	list-style: decimal;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+} 
+
+
+h1 {
+	font-size: 26px;
+	font-family: Hypatia-Sans-Pro-ExtraLight;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	}
+
+h2 {
+	font-size: 1.4em;
+}
+
+p {
+	margin: 10px 0;
+	font-family: HypatiaSansPro-Light;
+}
+
+@font-face {
+	font-family: hypatiasansprobold; /* имя шрифта для CSS правил */
+	src: url(hypatiasansprobold.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+	}
+
+@font-face {
+	font-family: Hypatia-Sans-Pro-ExtraLight; /* имя шрифта для CSS правил */
+	src: url(Hypatia-Sans-Pro-ExtraLight.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+	}
+@font-face {
+	font-family: HypatiaSansPro-Light; /* имя шрифта для CSS правил */
+	src: url(HypatiaSansPro-Light.otf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+@font-face {
+	font-family: Hypatia-SansPro-Semibold; /* имя шрифта для CSS правил */
+	src: url(Hypatia-SansPro-Semibold.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+@font-face {
+	font-family: hypatiasansproblack; /* имя шрифта для CSS правил */
+	src: url(hypatiasansproblack.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+@font-face {
+	font-family: hypatiasansproregular; /* имя шрифта для CSS правил */
+	src: url(hypatiasansproregular.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+/* end reset browser styles */
+
+
+.mainWrapper {
+	width: 900px;
+	margin: 0 auto;
+}
+
+/* HEADER */
+.navWrapper {
+	height: 70px;
+	line-height: 70px;
+}
+
+.logo {
+	background: url(../images/nav_logo.png) no-repeat left;
+	display: inline-block;
+	width: 42px;
+	height: 42px;
+	float: left;
+	margin: 14px 0px 0px 40px;
+}
+
+ul.mainNav {
+	border-bottom: 1px solid #f1f1f1;
+}
+
+ul.mainNav li {
+	list-style: none;
+	margin:auto;
+	padding: 0;
+	display: inline-block;
+	margin-bottom:-4px;
+	text-align:left;
+}
+
+ul.mainNav li a {
+	display: block;
+	height: 66px;
+	padding: 0px 40px;
+	color: #313131;
+	text-decoration: none;
+	font-family: Hypatia-Sans-Pro-ExtraLight;
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+ul.mainNav li a:hover {
+	text-decoration: underline;
+}
+
+.navWrapper {
+	text-align: center;
+}
+
+/* SLIDER */
+
+.slider-container {
+	height: 330px;
+	overflow: hidden;
+	position: relative;
+}
+
+
+.sm_slider {
+height: 270px;
+margin: 25px 25px 0px;
+position: relative;
+width: 960px;
+}
+
+.sm_prev, .sm_next {
+	top: 58% !important;
+}
+
+.sm_nav {
+	display: none !important;
+}
+
+/* Products */
+
+.product_h1 {
+	text-align: center;
+	margin: 35px auto -35px;
+	letter-spacing: 2px;
+}
+
+ul.products {
+	margin-top: 50px;
+	text-align: center;
+}
+
+ul.products li {
+	display: inline-block;
+	width: 265px;
+	max-width: 265px;
+	text-align: center;
+	vertical-align: top;
+	position: relative;
+	margin: 0 2% 50px 0;
+}
+
+ul.products li a {
+	text-decoration: none;
+	color: #000;
+}
+
+ul.products li:hover a .button {
+	display: block;
+}
+
+.product-name {
+	font-family: hypatiasansprobold;
+	text-transform: uppercase;
+	font-size: 14px;
+	}
+
+.button-invisible {
+	display: none;
+}
+
+.button { 
+	text-align:center; 
+	padding: 7px 8px 3px 9px; 
+	border:none;
+	font-weight:bold; 
+	color:#e5ffff; 
+	background:#940000; 
+	position: absolute;
+	top: 39%;
+	left: 31%;
+	font-family: hypatiasansprobold;
+	letter-spacing: 0.06em;
+	font-size: 18px;
+}
+
+.product-container {
+	width: 100%;
+	margin: 40px 0px 0px;
+	border-bottom: 1px solid #F1F1F1;
+	padding-bottom: 32px;
+}
+
+.product-container-left {
+	width: 35%;
+	float: left;
+}
+
+.product-container-right {
+	margin-left: 35%;
+}
+
+.image-block {
+	position: relative;
+	float: left;
+	width: 100%;
+	padding: 0px;
+}
+
+.promo-image {
+	position: absolute;
+	left: 0px;
+	top: 0px;	
+}
+
+/* Product cart */
+
+.button_cart-product {
+	text-align:center; 
+	padding:8px 15px; 
+	width: 120px;
+	border:none;
+	color:#e5ffff; 
+	background:#940000; 
+	font-family: Hypatia-SansPro-Semibold;
+	font-size: 23px;
+	letter-spacing: 1px;
+}
+
+.structure-title {
+	font-family: Hypatia-SansPro-Semibold;
+	font-size: 22px;
+	letter-spacing: 1px;
+}
+
+.structure-list {
+	list-style-position:inside;
+}
+
+.structure {
+	list-style: none;
+}
+
+
+/* NEWS */
+.base {
+	width: auto;
+	margin-left: 0px;
+	margin-right: 0px;
+	min-width: 960px;
+	padding: 0px;
+	display:table;
+}
+.base-row {
+	Display: table-row;
+}
+.base li {
+	display: table-cell;
+	width: 25;
+}
+.cell1 {
+	background-color: #f00;
+}
+.cell2 {
+	background-color: #0f0;
+}
+.cell3 {
+	background-color: #00f;
+}
+
+/* FOOTER */
+.footer {
+	background: url(../images/nav_logo.png) no-repeat center;
+	display: inline-block;
+	width: 100%;
+	height: 42px;
+	margin: 65px 0 30px;
+}

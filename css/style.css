@@ -1,0 +1,1247 @@
+/* reset browser styles */
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    font-size: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    vertical-align: baseline;
+
+    border: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+html,
+body {
+    line-height: 1.2;
+
+    height: 100%;
+}
+
+
+
+.Wrapper {
+    position: relative;
+
+    display: table;
+
+    width: 100%;
+    height: 100%;
+}
+
+ol {
+    padding-left: 1.4em;
+
+    list-style: decimal;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+a {
+    font-family: HypatiaSansPro-Light;
+
+    text-decoration: none;
+
+    color: #000;
+}
+
+.button:hover {
+    opacity: .8;
+}
+
+h1 {
+    font-family: Hypatia-Sans-Pro-ExtraLight;
+    font-size: 26px;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+p {
+    font-family: HypatiaSansPro-Light;
+
+    margin: 10px 0;
+}
+
+span {
+    font-family: HypatiaSansPro-Light;
+}
+
+hr {
+    color: #f1f1f1;
+}
+
+@font-face {
+    font-family: hypatiasansprobold; /* имя шрифта для CSS правил */
+
+    src: url(hypatiasansprobold.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+@font-face {
+    font-family: Hypatia-Sans-Pro-ExtraLight; /* имя шрифта для CSS правил */
+
+    src: url(Hypatia-Sans-Pro-ExtraLight.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+@font-face {
+    font-family: HypatiaSansPro-Light; /* имя шрифта для CSS правил */
+
+    src: url(HypatiaSansPro-Light.otf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+@font-face {
+    font-family: Hypatia-SansPro-Semibold; /* имя шрифта для CSS правил */
+
+    src: url(Hypatia-SansPro-Semibold.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+@font-face {
+    font-family: hypatiasansproblack; /* имя шрифта для CSS правил */
+
+    src: url(hypatiasansproblack.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+@font-face {
+    font-family: hypatiasansproregular; /* имя шрифта для CSS правил */
+
+    src: url(hypatiasansproregular.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+/* end reset browser styles */
+
+body {
+    min-width: 960px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.clear {
+    font-family: none;
+
+    margin: 5px 0;
+}
+.mainWrapper {
+    width: 900px;
+    margin: 0 auto 30px;
+}
+
+.mainWrapper-index {
+    margin: 0 auto;
+}
+
+.mainWrapper-960 {
+    width: 960px;
+    margin: 0 auto 30px;
+}
+
+#podlogka {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: .6;
+    background: #000;
+}
+
+/* HEADER */
+.navWrapper {
+    line-height: 90px;
+
+    height: 90px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.logo {
+    float: left;
+
+    width: 42px;
+    height: 42px;
+    margin: 14px 0 0 40px;
+
+    background: url(../images/nav_logo.png) no-repeat left;
+}
+
+
+ul.mainNav {
+	float: left;
+	width: 75%;
+}
+
+ul.mainNav li {
+    display: inline-block;
+
+    margin: 0 3%;
+    margin-bottom: -4px;
+    padding: 0;
+
+    list-style: none;
+
+    text-align: left;
+}
+
+ul.mainNav li a {
+    font-family: HypatiaSansPro-Light;
+    font-size: 14px;
+
+    display: block;
+
+    height: 66px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    color: #313131;
+}
+
+ul.mainNav li a:hover {
+    text-decoration: underline;
+}
+
+.navWrapper {
+    text-align: center;
+}
+
+.index-about {
+    margin: 10px 32px !important;
+
+    text-align: center;
+}
+
+.header-contacts {
+	float: left;
+	width: 15%;
+	font-size: 12px;
+	margin-top: 15px;
+	line-height: 0.5em;
+	text-align: left;
+}
+
+/* SLIDER */
+
+
+.rslides {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.rslides li {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+
+    -webkit-backface-visibility: hidden;
+}
+
+.rslides li:first-child {
+    position: relative;
+
+    display: block;
+    float: left;
+}
+
+.rslides img {
+    display: block;
+    float: left;
+
+    width: 100%;
+    height: auto;
+
+    border: 0;
+}
+
+/*.slider-container {
+	height: 330px;
+	overflow: hidden;
+	position: relative;
+}*/
+
+/*
+#slide1 {
+
+	background-image: url(../images/slider-1-bg-rp.png); 
+    background-repeat: repeat; 
+    position: relative;
+}
+
+#slide2 {
+	background-image: url(../images/slider-2-bg-rp.png); 
+    background-repeat: repeat; 
+    position: relative;
+}
+*/
+
+/*.sm_slider {
+	height: 270px;
+	margin: 25px 25px 0px;
+	position: relative;
+	width: 960px;
+}
+
+.sm_prev, .sm_next {
+	top: 58% !important;
+	border-color: #FF2828 !important;
+}
+
+.sm_nav {
+	display: none !important;
+}
+
+
+
+.slider2__phone2 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+}
+*/
+
+
+/* Products */
+
+.title_h1 {
+    margin: 35px auto 0;
+
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+ul.products {
+    margin-top: 50px;
+
+    text-align: center;
+}
+
+ul.products li {
+    position: relative;
+
+    display: inline-block;
+
+    width: 265px;
+    max-width: 265px;
+    margin: 0 2% 50px 0;
+
+    text-align: center;
+    vertical-align: top;
+}
+
+ul.products li a {
+    text-decoration: none;
+
+    color: #000;
+}
+
+ul.products li:hover a .button {
+    display: block;
+
+    cursor: pointer;
+}
+
+.product-thumbnail-container {
+    height: 265px;
+    width: 265px;
+    white-space: nowrap;
+    text-align: center; margin: 1em 0;
+    margin-bottom: 20px;
+}
+
+.product-thumbnail-container .pt-container-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.product-thumbnail-container img {
+    vertical-align: middle;
+    max-height: 265px;
+    max-width: 265px;
+}
+
+
+
+
+.product-name {
+    font-family: hypatiasansprobold;
+    font-size: 14px;
+
+    text-transform: uppercase;
+}
+
+.button-invisible {
+    display: none;
+}
+
+.button,
+input.submit {
+    font-family: hypatiasansprobold;
+    font-size: 18px;
+    font-weight: bold;
+
+    padding: 7px 8px 3px 9px;
+
+    text-align: center;
+    letter-spacing: .06em;
+
+    color: #fff;
+    border: none;
+    background: #FF2828;
+}
+
+.button-product-position {
+    position: absolute;
+    top: 39%;
+    left: 31%;
+}
+
+.button-contact-us {
+    font-family: hypatiasansproregular;
+    font-size: 16px;
+
+    width: 150px;
+    padding: 8px 5px;
+
+    cursor: pointer;
+	border-radius: 5px;
+  	margin: 0 auto;
+
+  	text-transform: uppercase;
+}
+
+.product-container {
+    width: 100%;
+    margin: 40px 0 0;
+    padding-bottom: 32px;
+
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.product-container-left {
+    float: left;
+
+    width: 35%;
+}
+
+.product-container-right {
+    margin-left: 35%;
+}
+
+.image-block {
+    position: relative;
+
+    float: left;
+
+    width: 100%;
+    padding: 0;
+}
+
+.promo-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Product cart */
+
+#empty-cart-title {
+    font-size: 16pt;
+
+    margin-top: 90px;
+    margin-left: 400px;
+}
+
+.button_cart-product {
+    font-family: Hypatia-SansPro-Semibold;
+    font-size: 23px;
+
+    width: 120px;
+    padding: 8px 15px;
+
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+
+    color: #e5ffff;
+    border: none;
+    background: #FF2828;
+}
+
+.button_cart-product:hover {
+    opacity: .8;
+}
+
+.structure-title {
+    font-family: Hypatia-SansPro-Semibold;
+    font-size: 22px;
+
+    letter-spacing: 1px;
+}
+
+.structure-list {
+    margin: 0 0 14px;
+
+    list-style-position: inside;
+}
+
+.structure {
+    font-family: HypatiaSansPro-Light;
+
+    list-style: none;
+}
+
+
+.inputNewTrade,
+.classTextField,
+#dostavka {
+    font-family: HypatiaSansPro-Light;
+    font-size: 18px;
+
+    height: 25px;
+
+    text-align: center;
+
+    color: #fff;
+    border: 1px solid #f1f1f1;
+    background: #191919;
+}
+
+.classTextField {
+    width: 40px;
+}
+
+input.classTextField:before {
+    display: block;
+
+    content: ' шт';
+}
+
+#count:before {
+    display: block;
+
+    content: ' шт';
+}
+
+.amount,
+#price {
+    display: inline-block;
+}
+
+#price {
+    margin: 0 0 30px 30px;
+    margin-bottom: 0;
+}
+
+#attributes-table {
+    font-family: HypatiaSansPro-Light;
+}
+#attributes-table .attr-name {
+    font-size: 20px;
+    font-weight: bold;
+
+    width: 240px;
+
+    letter-spacing: 1px;
+}
+
+#attributes-table .value {
+    width: 210px;
+    padding: 4px;
+
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+
+    border-bottom: 2px solid #fff;
+}
+
+#attributes-table .value:hover {
+    color: #555;
+}
+
+#attributes-table .selectedValue {
+    border-radius: 4px;
+    background-color: #ccc;
+}
+
+
+
+#pr-discount {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+
+    color: red;
+}
+
+.cart-kostil {
+    margin: 0 97px;
+}
+
+.hr-cart {
+    max-width: 542px;
+}
+
+h2.title_h1 {
+    font-family: Hypatia-Sans-Pro-ExtraLight;
+}
+
+#beznal_submit,
+#nal_submit {
+    margin-left: 242px;
+}
+
+/* NEWS */
+
+.h2-news {
+    font-family: HypatiaSansPro-Light;
+    font-size: 1.5em;
+}
+
+.h2-news:hover {
+    text-decoration: underline;
+}
+
+.base {
+    display: table;
+
+    width: auto;
+    min-width: 960px;
+    margin: 40px 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+}
+.base-row {
+    display: table-row;
+}
+
+.base li {
+    display: table-cell;
+
+    width: 25;
+    padding: 0 28px;
+
+    border-left: 1px solid #f1f1f1;
+}
+
+.base li:last-child {
+    border-right: 1px solid #f1f1f1;
+}
+
+.news-arrow {
+    position: absolute;
+    left: 49%;
+}
+
+.news_prev {
+    left: 10px;
+
+    border-top-width: 3px;
+    border-left-width: 3px;
+}
+
+.news_next {
+    right: 10px;
+
+    margin-left: 18px !important;
+
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+}
+
+.news_prev,
+.news_next {
+    font-style: normal;
+
+    z-index: 999;
+
+    display: block;
+
+    width: 15px;
+    height: 15px;
+    margin: -18px 0 0;
+
+    cursor: pointer;
+    transform: rotate(-45deg);
+
+    opacity: .3;
+    border-style: solid;
+    border-color: #fff;
+}
+
+
+/* WHERE */
+
+.where-container,
+.about-container {
+    width: 100%;
+    margin: 40px 0 0;
+}
+
+.where-left {
+    float: left;
+
+     margin-right: 30px;
+}
+
+.where-right {
+    
+}
+
+/* ABOUT */
+.about-left {
+    float: left;
+
+    width: 35%;
+}
+
+.about-right {
+    font-family: hypatiasansproregular;
+
+    margin-left: 35%;
+}
+
+.about-right p {
+    font-family: hypatiasansproregular;
+}
+
+ul.about-list {
+    margin: 0 0 10px;
+}
+
+ul.about-list li {
+    list-style-type: none;
+}
+
+ul.about-list li:before {
+    content: '- ';
+}
+
+/* FORM */
+
+.contact-form {
+    width: 300px;
+    margin: 40px auto;
+
+    text-align: left;
+}
+
+.contactWrapper {
+    width: 500px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.contact_head {
+    font-family: hypatiasansprobold;
+    font-size: 14px;
+
+    margin: 0 0 3px;
+}
+
+.contact-form_field {
+    width: 100%;
+    margin-bottom: 30px;
+	border-radius: 6px;
+	border: 1px solid #C5C5C5;
+    padding: 8px;
+    background-color: #FAFAFA;
+}
+
+textarea:focus, input:active, input:focus, input:checked{
+    border: 1px solid #FF2828 !important;
+    border-radius: 5px;
+}
+
+/*.contact-form_field-name {
+	height: 35px;
+}*/
+
+.contact-form_field-message {
+    height: 70px;
+    font-size: 14px;
+    font-family: Arial
+}
+
+.contact-form_field-mini {
+	height: 25px;
+}
+
+*:focus {
+    outline: 0;
+}
+.contact-us {
+    font-size: 15px;
+    line-height: 25px;
+
+    display: inline-block;
+
+    max-width: 320px;
+    padding: 10px 0 30px 45px;
+
+    text-align: left;
+    vertical-align: top;
+}
+
+.contact-us_mail {
+    background: url('../images/mail.png') no-repeat scroll 1px 1px transparent;
+}
+
+.contact-us_phone {
+    background: url('../images/phone.png') no-repeat scroll 1px 1px transparent;
+}
+
+.contact-us_map {
+    background: url('../images/map.png') no-repeat scroll 1px 1px transparent;
+}
+
+.contact-us_container {
+    margin-top: 40px;
+}
+
+/* CART TABLE */
+.cart-table {
+    margin: 50px auto 10px;
+
+    text-align: center;
+}
+
+.delete {
+    display: block;
+
+    height: 30px;
+
+    background: url(../images/delete.png) no-repeat center;
+}
+
+.cart-table .cart-count {
+    width: 50px;
+}
+
+#dostavka {
+    margin-left: 74px;
+}
+
+#dostavka-price {
+    text-align: center;
+}
+
+#dostavka {
+    font-size: 16px !important;
+
+    height: 22px !important;
+}
+
+.cart-fullSum {
+    margin: 50px 0 20px 485px !important;
+}
+
+.cart-fullSum span {
+    font-family: hypatiasansproregular !important;
+    font-size: 18px;
+}
+
+.button_cart-pay {
+    font-family: Hypatia-SansPro-Semibold;
+    font-size: 16px;
+
+    display: inline-block;
+
+    width: 120px;
+    padding: 2px 4px;
+
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+
+    color: #e5ffff;
+    border: medium none;
+    background: none repeat scroll 0 0 #FF2828;
+}
+
+.cart-pay_container {
+    float: right;
+
+    margin-right: 100px;
+}
+
+.beznal-container {
+    width: 342px;
+    margin: 15px auto;
+}
+
+#beznal_name,
+#beznal_phone,
+#beznal_email,
+#beznal_address,
+#nal_name,
+#nal_phone,
+#nal_email,
+#nal_address {
+    width: 98%;
+    margin: 0 0 10px;
+}
+
+/* FOOTER */
+.footer {
+    font-size: 14px;
+
+    position: relative;
+
+    display: table-row;
+
+    width: 100%;
+    height: 42px;
+    height: 80px;
+    margin-top: -80px;
+    background-color: #F9F9F9;
+}
+
+.footer-logo {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    left: 0;
+
+    margin: auto;
+}
+
+.index-contacts {
+    display: inline-block;
+
+    max-width: 320px;
+    padding: 10px 0 20px 30px;
+
+    text-align: left;
+    vertical-align: middle;
+}
+
+.footer-contacts {
+    margin: 0 40px 110px;
+    padding-top: 35px;
+}
+
+.footer-contacts-left {
+    float: left;
+}
+
+.footer-contacts-right {
+    float: right;
+}
+
+.index-adress {
+    background: url('../images/index-adress.png') no-repeat scroll 1px 1px transparent;
+}
+
+.index-mail {
+    background: url('../images/index-mail.png') no-repeat scroll 1px 1px transparent;
+}
+
+.index-phone {
+    background: url('../images/index-phone.png') no-repeat scroll 1px 1px transparent;
+}
+
+.index-www {
+    background: url('../images/index-www.png') no-repeat scroll 1px 1px transparent;
+}
+
+.index-vk {
+    background: url('../images/index-vk.png') no-repeat scroll 1px 1px transparent;
+}
+
+/*
+* ОКНО БЕЗНАЛИЧНОГО РАСЧЁТА
+*/
+
+#beznal_window,
+#nal_window,
+#success_window {
+    position: absolute;
+    z-index: 200;
+    top: 15%;
+    left: 50%;
+
+    display: none;
+
+    width: 400px;
+    margin-left: -200px;
+    padding-bottom: 25px;
+
+    border: 2px solid #ccc;
+    background-color: #fff;
+}
+
+#beznal_window #rekvizit-wrapper {
+    height: 30px;
+}
+
+#beznal_window #rekvizit-open-file {
+    float: right;
+
+    cursor: pointer;
+}
+
+#beznal_window #rekvizit-open-file:hover {
+    text-decoration: underline;
+}
+
+#close_beznal_window {
+    float: right;
+
+    margin-top: 10px;
+    margin-right: 30px;
+
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#close_success_window {
+    margin: 0 auto;
+}
+/*
+* ОКНО НАЛИЧНОГО РАСЧЁТА
+*/
+
+#close_nal_window {
+    float: right;
+
+    margin-top: 10px;
+    margin-right: 30px;
+
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#nal_window_success,
+#success_window {
+    font-size: 20px;
+
+    display: none;
+
+    padding: 10px 30px;
+
+    text-align: center;
+}
+
+#nal_window_success p {
+    margin: 25px 0;
+}
+
+/* SLIDER */
+
+.slider {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+}
+.slider__wrapper {
+    overflow: hidden;
+
+    height: 100%;
+
+    list-style: none;
+
+    *zoom: 1;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+.slider__item {
+    float: left;
+    clear: none;
+
+    height: 100%;
+}
+
+.slider__arrows-item {
+    font-style: normal;
+
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+
+    display: block;
+
+    width: 25px;
+    height: 25px;
+    margin: -10px 0 0 0;
+
+    cursor: pointer;
+    cursor: pointer;
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+
+    opacity: .3;
+    border-width: 0;
+    border-style: solid;
+    border-color: #4e4e4e;
+}
+
+.slider__arrows-item--right {
+    left: 10px;
+
+    border-top-width: 3px;
+    border-left-width: 3px;
+}
+.slider__arrows-item--left {
+    right: 10px;
+
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+}
+
+.slider__arrows-item--right:hover,
+.slider__arrows-item--left:hover {
+    opacity: 1;
+}
+
+.slider__nav {
+    position: absolute;
+    bottom: 30px;
+}
+.slider__nav-item {
+    display: block;
+    float: left;
+    clear: none;
+
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+
+    background: #fff;
+}
+.slider__nav-item--current {
+    background: #ccc;
+}
+.slider__nav-item:hover {
+    background: #ccc;
+}
