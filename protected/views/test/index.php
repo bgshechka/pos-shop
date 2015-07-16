@@ -78,54 +78,75 @@
 
 		echo "<tr>";
 		echo "<td>id</td>";
-		foreach ($header as $prop) {
-			echo "<td>$prop</td>";
-		}
+		if ($header)
+			foreach ($header as $prop) {
+				echo "<td>$prop</td>";
+			}
 		echo "<td>article</td>";
 		echo "<td>photo</td>";
 		echo "<td>description</td>";
 		echo "<td>price</td>";
 		echo "</tr>";
-		 
-		foreach( $productType->products as $product ) {
+		if ($productType)
+		{ 
+			foreach( $productType->products as $product ) {
 
-			$values = json_decode($product->values_);
+				$values = json_decode($product->values_);
 
-			//var_dump($values);
+				//var_dump($values);
 
-		    echo "<tr>";
-		    
-			    echo "<td>$product->id</td>";
+			    echo "<tr>";
+			    
+				    echo "<td>$product->id</td>";
 
-			    foreach ($values as $value) {
-					echo "<td>$value</td>";			    	
-			    }
+				    foreach ($values as $value) {
+						echo "<td>$value</td>";			    	
+				    }
 
-			    echo "<td>$product->article</td>";
-			    echo "<td>$product->photo</td>";
-			    echo "<td>$product->description</td>";
-			    echo "<td>$product->prices</td>";
+				    echo "<td>$product->article</td>";
+				    echo "<td>$product->photo</td>";
+				    echo "<td>$product->description</td>";
+				    echo "<td>$product->prices</td>";
 
-				// echo "<td>$product->model</td>";
-				// echo "<td>$product->format</td>";
-				// echo "<td>$product->orientation</td>";
-				// echo "<td>$product->thickness</td>";
-				// echo "<td>$product->mount</td>";
-				// echo "<td>$product->article</td>";
-				// echo "<td>$product->price</td>";
-				// echo "<td>$product->description</td>";
-				// echo "<td>$product->photo</td>";
-				// echo "<td>$product->price_number_1</td>";
-				// echo "<td>$product->price_number_2</td>";
-				// echo "<td>$product->price_number_3</td>";
-				// echo "<td>$product->reserved_0</td>";
-				// echo "<td>$product->reserved_1</td>";
-				// echo "<td>$product->reserved_2</td>";
-				// echo "<td>$product->reserved_3</td>";
-				// echo "<td>$product->reserved_4</td>";
+					// echo "<td>$product->model</td>";
+					// echo "<td>$product->format</td>";
+					// echo "<td>$product->orientation</td>";
+					// echo "<td>$product->thickness</td>";
+					// echo "<td>$product->mount</td>";
+					// echo "<td>$product->article</td>";
+					// echo "<td>$product->price</td>";
+					// echo "<td>$product->description</td>";
+					// echo "<td>$product->photo</td>";
+					// echo "<td>$product->price_number_1</td>";
+					// echo "<td>$product->price_number_2</td>";
+					// echo "<td>$product->price_number_3</td>";
+					// echo "<td>$product->reserved_0</td>";
+					// echo "<td>$product->reserved_1</td>";
+					// echo "<td>$product->reserved_2</td>";
+					// echo "<td>$product->reserved_3</td>";
+					// echo "<td>$product->reserved_4</td>";
 
-		    echo "</tr>";
+			    echo "</tr>";
+			}
+
+			echo "<tr>";
+			echo "</tr>";
+
+			echo "<tr>";
+				$tmp = json_decode($productType->values_);
+				foreach ($tmp as $prop)
+				{
+					foreach ($prop as $val)
+					{
+						echo "<td>";
+						echo "$val";
+						echo "</td>";
+					}
+				}
+			echo "</tr>";
+
 		}
+
 		 
 		// echo "</table>";
 
