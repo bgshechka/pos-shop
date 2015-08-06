@@ -30,7 +30,8 @@
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('ajaxupload');
 		Yii::app()->clientScript->registerCoreScript('datatables');
-
+		
+		Yii::app()->clientScript->registerCoreScript('datatables');
 		$header = json_decode($productType->properties);
 	?>  
 
