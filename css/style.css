@@ -539,15 +539,7 @@ input.submit {
     border-bottom: 1px solid #f1f1f1;
 }
 
-.product-container-left {
-    float: left;
 
-    width: 35%;
-}
-
-.product-container-right {
-    margin-left: 35%;
-}
 
 .image-block {
     position: relative;

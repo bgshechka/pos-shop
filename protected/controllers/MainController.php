@@ -108,72 +108,17 @@ class MainController extends Controller
 	public function actionShowProduct($id=1)
 	{
 
-		$product = Products::model()->findByPk($id);
-		/*
-		$attributes = array();
-		$split_attributes_str= preg_split("/[;]/",$product->attributes_id);
-		$values = null;
-		foreach ($split_attributes_str as $attribute_id)
-		{
-			$attribute = Attributes::model()->findByPk($attribute_id);
-			$values = Values::model()->findAll(array('order' => 'name DESC',
-												 	'condition'=>'attribute_id=:attribute_id',
-												 	'params'=>array(':attribute_id'=>$attribute_id),
-											     ));
-			
-			$tmpAttributeArray = array();
-			$tmpAttributeArray["name"]=$attribute->name;
-			$tmpAttributeArray["values"]=$values;
-			array_push($attributes, $tmpAttributeArray);
-		}
-		*/
-		$attributes = Attributes::model()->findAll('product_id=:product_id',array(':product_id'=>$id));
-		$attributes_array = array();
-		foreach ($attributes as $attribute)
-		{
-			$values = Values::model()->findAll(array('condition'=>'attribute_id=:attribute_id',
-												 	'params'=>array(':attribute_id'=>$attribute->id),
-											     ));
+		$productType= ProductTypes::model()->with('products')->findByPk($id);
 
-			$tmpAttributeArray = array();
-			$tmpAttributeArray["name"]=$attribute->name;
-			$tmpAttributeArray["values"]=$values;
-			array_push($attributes_array, $tmpAttributeArray);
-		}
+		Yii::app()->clientScript->registerCoreScript('jquery');
+		Yii::app()->clientScript->registerCoreScript('ajaxupload');
+		Yii::app()->clientScript->registerCoreScript('datatables');
+		Yii::app()->clientScript->registerCoreScript('datatablesColumnFilter');
 
-		$split_otherproducts_str =  preg_split("/[;]/",$product->otherproducts_id);
-		$otherproducts = array();
-		foreach ($split_otherproducts_str as $otherproducts_id)
-		{
-			$otherproduct = Otherproducts::model()->findByPk($otherproducts_id);
-			array_push($otherproducts, $otherproduct);
-		}
-
-		//скидка - хранится в виде последовательности граница;значение скидки;и т.д.
-		//т.е. если 0-4 шт. - 0%, 5-10 - 5%, 10шт до беск. - 10% так 4;0;10;5;i;10  i- infinity
-		$dis_split = explode(';',$product->discount);
-		$dis_intervals = array();
-		$dis_values = array();
-		for ($i=0,$k=0;$i<count($dis_split);$i+=2,$k++)
-		{
-			$dis_intervals[$k] = $dis_split[$i];
-			$dis_values[$k] = $dis_split[$i+1];
-		}
-
-
-
-		$cs = Yii::app()->clientScript;
-		$cs->registerScriptFile('/js/jquery.js');
-
+		Yii::app()->clientScript->registerCssFile('/css/jquery.dataTables.min.css');
 		
+		$this->render('showProduct', array( 'productType' => $productType ));
 		
-		$this->render("showProduct",array("product"=>$product,
-										  "attributes"=>$attributes_array,
-										  "otherproducts"=>$otherproducts,
-										  "dis_info" => $product->discount,
-										  "dis_intervals" => json_encode($dis_intervals),
-										  "dis_values" => json_encode($dis_values)
-									));
 	}
 
 	public function actionToCart()

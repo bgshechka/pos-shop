@@ -113,8 +113,12 @@ return array(
         			),
         		'datatables' => array(
         			'baseUrl' => 'js/',  
-            		'js' => array('jquery.dataTables.min.js'),
-        			) 
+            		'js' => array('jquery.dataTables.min.js'), 
+        			) ,
+        		'datatablesColumnFilter' => array(  
+            		'baseUrl' => 'js/',  
+            		'js' => array('jquery.datatables.columnfilter.js'),  
+        			), 
      		)    
 		),
 	),

@@ -30,15 +30,13 @@
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('ajaxupload');
 		Yii::app()->clientScript->registerCoreScript('datatables');
-		
-		Yii::app()->clientScript->registerCoreScript('datatables');
+
+		Yii::app()->clientScript->registerCssFile('/css/jquery.dataTables.min.css');
 		$header = json_decode($productType->properties);
 	?>  
-
-	<table id="productTable">
-		<tr>
-			<td> <? echo $productType->name; ?></td>
-		</tr>
+	<? echo $productType->name; ?>
+	<table id="productTable" class="display">
+	<thead>	
 		<tr>
 			<td>id</td>
 			<?php 
@@ -53,7 +51,8 @@
 			<td>description</td>
 			<td>price</td>
 		</tr>
-
+	</thead>
+	<tbody>
 	<?php		
 		if ($productType)
 		{ 
@@ -61,43 +60,45 @@
 
 				$values = json_decode($product->values_);
 	?>
-		<tr>			    
-			<td><? echo $product->id ?></td>
-			<?php
-			    foreach ($values as $value) {
-			?>
-			<td><? echo $value ?></td>			    	
-			<?  }  ?>
+				<tr>			    
+					<td><? echo $product->id ?></td>
+					<?php
+					    foreach ($values as $value) {
+					?>
+							<td><? echo $value ?></td>			    	
+					<?  }  ?>
 
-			<td><? echo $product->article ?></td>
-			<td><? echo $product->photo ?></td>
-			<td><? echo $product->description ?></td>
-			<td><? echo $product->prices ?></td>
+					<td><? echo $product->article ?></td>
+					<td><? echo $product->photo ?></td>
+					<td><? echo $product->description ?></td>
+					<td><? echo $product->prices ?></td>
 
-		</tr>
-	<?	} ?>
-
+				</tr>
 	<?
-			echo "<tr>";
-			echo "</tr>";
-
-			echo "<tr>";
-				$tmp = json_decode($productType->values_);
-				foreach ($tmp as $prop)
-				{
-					foreach ($prop as $val)
-					{
-						echo "<td>";
-						echo "$val";
-						echo "</td>";
-					}
-				}
-			echo "</tr>";
-
-		}		 
-
+		}
+		}	
 	?>
 
+	
+	</tbody>		
+	</table>
+
+
+	<table id="test-table">
+		<thead>
+			<th>t1</th>
+			<th>t1</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+		</tbody>
 	</table>
 
 	<script type="text/javascript">
