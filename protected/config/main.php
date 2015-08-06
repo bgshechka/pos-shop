@@ -110,6 +110,10 @@ return array(
         		'ajaxupload' => array(
         			'baseUrl' => 'js/',  
             		'js' => array('ajaxupload.min.js'),
+        			),
+        		'datatables' => array(
+        			'baseUrl' => 'js/',  
+            		'js' => array('jquery.dataTables.min.js'),
         			) 
      		)    
 		),

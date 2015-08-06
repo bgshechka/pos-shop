@@ -29,7 +29,76 @@
 	<?php 
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('ajaxupload');
+		Yii::app()->clientScript->registerCoreScript('datatables');
+
+		$header = json_decode($productType->properties);
 	?>  
+
+	<table id="productTable">
+		<tr>
+			<td> <? echo $productType->name; ?></td>
+		</tr>
+		<tr>
+			<td>id</td>
+			<?php 
+				if ($header)
+					foreach ($header as $prop) {
+			?>
+				<td><? echo $prop ?> </td>
+			<? } ?>
+			
+			<td>article</td>
+			<td>photo</td>
+			<td>description</td>
+			<td>price</td>
+		</tr>
+
+	<?php		
+		if ($productType)
+		{ 
+			foreach( $productType->products as $product ) {
+
+				$values = json_decode($product->values_);
+	?>
+		<tr>			    
+			<td><? echo $product->id ?></td>
+			<?php
+			    foreach ($values as $value) {
+			?>
+			<td><? echo $value ?></td>			    	
+			<?  }  ?>
+
+			<td><? echo $product->article ?></td>
+			<td><? echo $product->photo ?></td>
+			<td><? echo $product->description ?></td>
+			<td><? echo $product->prices ?></td>
+
+		</tr>
+	<?	} ?>
+
+	<?
+			echo "<tr>";
+			echo "</tr>";
+
+			echo "<tr>";
+				$tmp = json_decode($productType->values_);
+				foreach ($tmp as $prop)
+				{
+					foreach ($prop as $val)
+					{
+						echo "<td>";
+						echo "$val";
+						echo "</td>";
+					}
+				}
+			echo "</tr>";
+
+		}		 
+
+	?>
+
+	</table>
+
 	<script type="text/javascript">
 		$("#UploadButton").ajaxUpload({
 			<? $url = $this->createUrl('test/loadPriceAjax'); ?>
@@ -66,142 +135,13 @@
 			//$.post("<?= $url?>");
 
 		}
+
+		$(document).ready(function() {
+    		$('#productTable').DataTable();
+		} );
+				
 	</script>
 
-	<?php
-		
-		echo "<table>";
-
-		echo "<tr><td>$productType->name</td></tr>";
-
-		$header = json_decode($productType->properties);
-
-		echo "<tr>";
-		echo "<td>id</td>";
-		if ($header)
-			foreach ($header as $prop) {
-				echo "<td>$prop</td>";
-			}
-		echo "<td>article</td>";
-		echo "<td>photo</td>";
-		echo "<td>description</td>";
-		echo "<td>price</td>";
-		echo "</tr>";
-		if ($productType)
-		{ 
-			foreach( $productType->products as $product ) {
-
-				$values = json_decode($product->values_);
-
-				//var_dump($values);
-
-			    echo "<tr>";
-			    
-				    echo "<td>$product->id</td>";
-
-				    foreach ($values as $value) {
-						echo "<td>$value</td>";			    	
-				    }
-
-				    echo "<td>$product->article</td>";
-				    echo "<td>$product->photo</td>";
-				    echo "<td>$product->description</td>";
-				    echo "<td>$product->prices</td>";
-
-					// echo "<td>$product->model</td>";
-					// echo "<td>$product->format</td>";
-					// echo "<td>$product->orientation</td>";
-					// echo "<td>$product->thickness</td>";
-					// echo "<td>$product->mount</td>";
-					// echo "<td>$product->article</td>";
-					// echo "<td>$product->price</td>";
-					// echo "<td>$product->description</td>";
-					// echo "<td>$product->photo</td>";
-					// echo "<td>$product->price_number_1</td>";
-					// echo "<td>$product->price_number_2</td>";
-					// echo "<td>$product->price_number_3</td>";
-					// echo "<td>$product->reserved_0</td>";
-					// echo "<td>$product->reserved_1</td>";
-					// echo "<td>$product->reserved_2</td>";
-					// echo "<td>$product->reserved_3</td>";
-					// echo "<td>$product->reserved_4</td>";
-
-			    echo "</tr>";
-			}
-
-			echo "<tr>";
-			echo "</tr>";
-
-			echo "<tr>";
-				$tmp = json_decode($productType->values_);
-				foreach ($tmp as $prop)
-				{
-					foreach ($prop as $val)
-					{
-						echo "<td>";
-						echo "$val";
-						echo "</td>";
-					}
-				}
-			echo "</tr>";
-
-		}
-
-		 
-		// echo "</table>";
-
-		// echo "<table>";
-		// echo "<tr>";
-		// 	echo "<td>id</td>";
-		// 	echo "<td>name</td>";
-		// 	echo "<td>model</td>";
-		// 	echo "<td>format</td>";
-		// 	echo "<td>orientation</td>";
-		// 	echo "<td>thickness</td>";
-		// 	echo "<td>mount</td>";
-		// 	echo "<td>article</td>";
-		// 	echo "<td>price</td>";
-		// 	echo "<td>description</td>";
-		// 	echo "<td>photo</td>";
-		// 	echo "<td>price_number_1</td>";
-		// 	echo "<td>price_number_2</td>";
-		// 	echo "<td>price_number_3</td>";
-		// 	echo "<td>reserved_0</td>";
-		// 	echo "<td>reserved_1</td>";
-		// 	echo "<td>reserved_2</td>";
-		// 	echo "<td>reserved_3</td>";
-		// 	echo "<td>reserved_4</td>";
-		// echo "</tr>";
-		 
-		// foreach( $products as $product ) {
-		//     echo "<tr>";
-		    
-		// 	    echo "<td>$product->id</td>";
-		// 		echo "<td>$product->name</td>";
-		// 		echo "<td>$product->model</td>";
-		// 		echo "<td>$product->format</td>";
-		// 		echo "<td>$product->orientation</td>";
-		// 		echo "<td>$product->thickness</td>";
-		// 		echo "<td>$product->mount</td>";
-		// 		echo "<td>$product->article</td>";
-		// 		echo "<td>$product->price</td>";
-		// 		echo "<td>$product->description</td>";
-		// 		echo "<td>$product->photo</td>";
-		// 		echo "<td>$product->price_number_1</td>";
-		// 		echo "<td>$product->price_number_2</td>";
-		// 		echo "<td>$product->price_number_3</td>";
-		// 		echo "<td>$product->reserved_0</td>";
-		// 		echo "<td>$product->reserved_1</td>";
-		// 		echo "<td>$product->reserved_2</td>";
-		// 		echo "<td>$product->reserved_3</td>";
-		// 		echo "<td>$product->reserved_4</td>";
-
-		//     echo "</tr>";
-		// }
-		 
-		// echo "</table>";
-
-	?>
 </body>
 </html>
 
