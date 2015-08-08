@@ -49,7 +49,7 @@
 				?>
 				<li><a href="<?= $url ?>">
 						<div class="product-thumbnail-container">
-							 <span class="pt-container-helper"></span><img src="<?=$product->products[0]->photo?>" alt="">
+							 <span class="pt-container-helper"></span><img src="<?='./images/'.$product->products[0]->photo?>" alt="">
 						</div>
 						<span class="product-name"><?=$product->name ?></span>
 						<div class="button button-product-position button-invisible">КУПИТЬ</div>

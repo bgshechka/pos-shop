@@ -5387,3 +5387,46 @@ Stack trace:
 REQUEST_URI=/index.php?r=main/showProduct&id=55
 HTTP_REFERER=http://pos-shop/index.php
 ---
+2015/08/08 19:12:03 [error] [exception.CException] exception 'CException' with message 'Property "Products.products" is not defined.' in D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\base\CComponent.php:130
+Stack trace:
+#0 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\db\ar\CActiveRecord.php(145): CComponent->__get('products')
+#1 D:\OpenServer\domains\pos-shop\protected\views\main\showProduct.php(41): CActiveRecord->__get('products')
+#2 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CBaseController.php(126): require('D:\\OpenServer\\d...')
+#3 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\OpenServer\\d...', Array, true)
+#4 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(869): CBaseController->renderFile('D:\\OpenServer\\d...', Array, true)
+#5 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(782): CController->renderPartial('showProduct', Array, true)
+#6 D:\OpenServer\domains\pos-shop\protected\controllers\MainController.php(132): CController->render('showProduct', Array)
+#7 [internal function]: MainController->actionShowProduct('55')
+#8 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#9 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#10 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('showProduct')
+#14 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('main/showProduc...')
+#15 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 D:\OpenServer\domains\pos-shop\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=main/showProduct&id=55
+HTTP_REFERER=http://pos-shop/index.php
+---
+2015/08/08 19:13:34 [error] [exception.CException] exception 'CException' with message 'Property "Products.name" is not defined.' in D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\base\CComponent.php:130
+Stack trace:
+#0 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\db\ar\CActiveRecord.php(145): CComponent->__get('name')
+#1 D:\OpenServer\domains\pos-shop\protected\views\admin\index.php(20): CActiveRecord->__get('name')
+#2 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CBaseController.php(126): require('D:\\OpenServer\\d...')
+#3 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\OpenServer\\d...', Array, true)
+#4 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(869): CBaseController->renderFile('D:\\OpenServer\\d...', Array, true)
+#5 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#6 D:\OpenServer\domains\pos-shop\protected\controllers\AdminController.php(62): CController->render('index', Array)
+#7 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(49): AdminController->actionIndex()
+#8 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('')
+#12 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('admin')
+#13 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\OpenServer\domains\pos-shop\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=admin
+---

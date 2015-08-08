@@ -556,6 +556,10 @@ input.submit {
     left: 0;
 }
 
+.mini-image {
+    vertical-align: top;    
+}
+
 /* Product cart */
 
 #empty-cart-title {

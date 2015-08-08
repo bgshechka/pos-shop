@@ -38,7 +38,7 @@
 						$values = json_decode($product->values_);
 			?>
 						<tr>
-							<td><? echo $product->photo ?></td>
+							<td><img src="<?='./images/mini/'.$product->photo?>" alt="" class="mini-image"></td>
 							<td><? echo $product->article ?></td>			    
 							<?php
 							    foreach ($values as $value) {
@@ -136,16 +136,6 @@ $(document).ready(function() {
    				{ type: "text" },
    				null
    			]
-		  //   aoColumns: [
-		  //   	{ type: "text" },
-				// { type: "text" },
-				// { type: "text" },
-				// { type: "text" },
-				// { type: "text" },
-				// { type: "text" },,
-				// { type: "text" },
-				// { type: "text" },		    	
-		  //   ]
 		}
 		);
 
