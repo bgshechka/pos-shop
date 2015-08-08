@@ -55,7 +55,29 @@
 			?>
 
 			
-			</tbody>		
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th>article</th>
+
+					<?php 
+						if ($header)
+						{
+							foreach ($header as $prop)
+							{
+					?>
+								<th><? echo $prop ?> </th>
+						<?  }  ?>							
+					<?
+						} 
+					?>
+					
+					<th></th>
+					<th>price</th>
+					<th></th>  <!-- в корзину -->
+				</tr>
+			</tfoot>		
 			</table>
 			
 
@@ -77,16 +99,53 @@
 $(document).ready(function() {
 
    var nuberOfColumns = <?= count($header) ?>;
-   console.log(nuberOfColumns);	
-   $('#productTable').dataTable().columnFilter({
+   console.log(nuberOfColumns);
+
+   $('#productTable').dataTable({
 		    // sPlaceHolder : 'head:before',
-		    // aoColumns: [ { type: "text"},
-		    //              { type: "text"},
-		    //              { type: "text"},
-		    //              { type: "text"},
-		    //              { type: "text"}
-		    //            ] 
-		});
+		    "aoColumnDefs": [ 
+		    	{
+		    		"aTargets": [ 0, -3, -1 ],
+		    		"bSortable": false
+		    	},
+		    	{
+		    		"aTargets": [ -3 ],
+		    		"sClass": "description",
+		    	},
+
+		    ],
+
+		    "fnDrawCallback": function( oSettings ){
+  				$('.description').jTruncate({ 
+					length: 100, 
+					minTrail: 0, 
+					moreText: "[читать дальше]", 
+					lessText: "[спрятать]", 
+					//ellipsisText: " (обрезано)", 
+					moreAni: "fast", 
+					lessAni: "fast"
+					});
+  			}
+		})
+   		.columnFilter({
+   			"aoColumnDefs": [
+   				{  
+   					"aTargets": [ 1 ],
+   					"type": "text"
+   				}
+   			]
+		  //   aoColumns: [
+		  //   	{ type: "text" },
+				// { type: "text" },
+				// { type: "text" },
+				// { type: "text" },
+				// { type: "text" },
+				// { type: "text" },,
+				// { type: "text" },
+				// { type: "text" },		    	
+		  //   ]
+		}
+		);
 
 } );
 

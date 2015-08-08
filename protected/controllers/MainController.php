@@ -25,7 +25,10 @@ class MainController extends Controller
 
 	public function actionIndex()
 	{
-		$products = Products::model()->findAll();
+		//$products = Products::model()->findAll();
+
+		$products = ProductTypes::model()->with('products')->findAll();
+
 		$cs = Yii::app()->clientScript;
 		$cs->registerScriptFile('/js/jquery.js');
 		$cs->registerScriptFile('/js/responsiveslides.min.js');
@@ -114,6 +117,7 @@ class MainController extends Controller
 		Yii::app()->clientScript->registerCoreScript('ajaxupload');
 		Yii::app()->clientScript->registerCoreScript('datatables');
 		Yii::app()->clientScript->registerCoreScript('datatablesColumnFilter');
+		Yii::app()->clientScript->registerCoreScript('jTruncate');
 
 		Yii::app()->clientScript->registerCssFile('/css/jquery.dataTables.min.css');
 		

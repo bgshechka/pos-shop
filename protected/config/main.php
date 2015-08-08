@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
-	'defaultController' => 'test', //'main',
+	'defaultController' => 'main',
 
 
 	// preloading 'log' component
@@ -118,6 +118,10 @@ return array(
         		'datatablesColumnFilter' => array(  
             		'baseUrl' => 'js/',  
             		'js' => array('jquery.datatables.columnfilter.js'),  
+        			),
+        		'jTruncate' => array(  
+            		'baseUrl' => 'js/',  
+            		'js' => array('jquery.jTruncate.min.js'),  
         			), 
      		)    
 		),
