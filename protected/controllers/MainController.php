@@ -120,8 +120,16 @@ class MainController extends Controller
 		Yii::app()->clientScript->registerCoreScript('jTruncate');
 
 		Yii::app()->clientScript->registerCssFile('/css/jquery.dataTables.min.css');
+
+		$stringVariableColumns = '';
+
+		for ($i = 0; $i < count( json_decode($productType->properties) ); $i++)
+		{
+			$stringVariableColumns = $stringVariableColumns."{ type: \"select\" }, \n";
+		}
 		
-		$this->render('showProduct', array( 'productType' => $productType ));
+		$this->render('showProduct', array( 'productType' => $productType,
+											'stringVariableColumns' => $stringVariableColumns ));
 		
 	}
 
