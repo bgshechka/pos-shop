@@ -98,9 +98,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-   var nuberOfColumns = <?= count($header) ?>;
-   console.log(nuberOfColumns);
-
    $('#productTable').dataTable({
 		    // sPlaceHolder : 'head:before',
 		    "aoColumnDefs": [ 
@@ -128,11 +125,16 @@ $(document).ready(function() {
   			}
 		})
    		.columnFilter({
-   			"aoColumnDefs": [
-   				{  
-   					"aTargets": [ 1 ],
-   					"type": "text"
-   				}
+   			aoColumns: 
+   			[
+   				null,
+   				{ type: "text" },
+   				//variable columns 
+   				<?=$stringVariableColumns ?>
+
+   				null,
+   				{ type: "text" },
+   				null
    			]
 		  //   aoColumns: [
 		  //   	{ type: "text" },
