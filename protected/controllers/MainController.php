@@ -112,6 +112,7 @@ class MainController extends Controller
 	{
 
 		$productType= ProductTypes::model()->with('products')->findByPk($id);
+		$productType->products[0]->getPriceString();
 
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('ajaxupload');
