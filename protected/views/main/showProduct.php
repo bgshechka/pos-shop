@@ -1,5 +1,5 @@
-<div class="mainWrapper">
-	<div class="product-container">
+<div class="mainWrapper-showProduct">
+	
 			<?php 
 				$header = json_decode($productType->properties);
 				
@@ -46,7 +46,7 @@
 									<td><? echo $value ?></td>			    	
 							<?  }  ?>
 							<td><? echo $product->description ?></td>
-							<td><? echo $product->prices ?></td>
+							<td><? echo $product->getPriceString() ?></td>
 							<td><p >в корзину</p></td>
 						</tr>
 			<?
@@ -83,7 +83,7 @@
 
 			<div id="to_cart" class="button_cart-product">В корзину</div>
 		
-	</div>
+	
 </div>
 
 <div id="podlogka"></div>
@@ -100,9 +100,8 @@ $(document).ready(function() {
 
    var nuberOfColumns = <?= count($header) ?>;
    console.log(nuberOfColumns);
-
    $('#productTable').dataTable({
-		    // sPlaceHolder : 'head:before',
+		    sPlaceHolder : 'head:before',
 		    "aoColumnDefs": [ 
 		    	{
 		    		"aTargets": [ 0, -3, -1 ],
@@ -128,24 +127,18 @@ $(document).ready(function() {
   			}
 		})
    		.columnFilter({
-   			"aoColumnDefs": [
-   				{  
-   					"aTargets": [ 1 ],
-   					"type": "text"
-   				}
-   			]
-		  //   aoColumns: [
-		  //   	{ type: "text" },
-				// { type: "text" },
-				// { type: "text" },
-				// { type: "text" },
-				// { type: "text" },
-				// { type: "text" },,
-				// { type: "text" },
-				// { type: "text" },		    	
-		  //   ]
-		}
-		);
+   			aoColumns: [
+		    	null,
+				{ type: "text" },
+				{ type: "text" },
+				{ type: "text" },
+				{ type: "text" },
+				null,
+				null,
+				null,		    	
+		    ],
+		});
+   
 
 } );
 

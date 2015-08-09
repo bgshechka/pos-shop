@@ -10,6 +10,7 @@
  * @property string $photo
  * @property string $description
  * @property string $prices
+ * @property string $price_intervals
  * @property string $values_
  *
  * The followings are the available model relations:
@@ -33,12 +34,11 @@ class Products extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('type_id, article, photo, description, prices, values_', 'required'),
-			array('type_id, article', 'required'),
+			array('type_id, article, photo, description, prices, price_intervals, values_', 'required'),
 			array('type_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, type_id, article, photo, description, prices, values_', 'safe', 'on'=>'search'),
+			array('id, type_id, article, photo, description, prices, price_intervals, values_', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +66,7 @@ class Products extends CActiveRecord
 			'photo' => 'Photo',
 			'description' => 'Description',
 			'prices' => 'Prices',
+			'price_intervals' => 'Price Intervals',
 			'values_' => 'Values',
 		);
 	}
@@ -94,6 +95,7 @@ class Products extends CActiveRecord
 		$criteria->compare('photo',$this->photo,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('prices',$this->prices,true);
+		$criteria->compare('price_intervals',$this->price_intervals,true);
 		$criteria->compare('values_',$this->values_,true);
 
 		return new CActiveDataProvider($this, array(
@@ -110,5 +112,25 @@ class Products extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	//возвращает селовекочитаемою строку с промежутками цен
+	public  function getPriceString()
+	{
+		$prices = json_decode($this->prices);
+		$intervals = json_decode($this->price_intervals);
+
+		$firstInt = 1;
+		
+		$priceStr = "<table>";
+		for ($i=0;$i<count($prices);$i++)
+		{
+			$secondInt = $intervals[$i];
+			if ($secondInt!=-1)	$priceStr = $priceStr."<tr><td>$firstInt-$secondInt шт.</td><td>-$prices[$i] р.</td></tr>";
+			else $priceStr = $priceStr."<tr><td> > $firstInt шт.</td><td>-$prices[$i] р.</td></tr>";
+			$firstInt = $secondInt;
+		}
+		$priceStr = $priceStr."</table>";
+		return $priceStr;
 	}
 }

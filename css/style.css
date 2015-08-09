@@ -234,6 +234,11 @@ body {
     margin: 0 auto;
 }
 
+.mainWrapper-showProduct {
+    margin: 0 auto;
+    width:90%;
+}
+
 .mainWrapper-960 {
     width: 960px;
     margin: 0 auto 30px;
