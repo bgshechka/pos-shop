@@ -122,7 +122,7 @@ class Products extends CActiveRecord
 
 		$firstInt = 1;
 		
-		$priceStr = "<table>";
+		$priceStr = "<table class='priceTable'>";
 		for ($i=0;$i<count($prices);$i++)
 		{
 			$secondInt = $intervals[$i];

@@ -9,8 +9,8 @@
 			<table id="productTable" class="display">
 			<thead>	
 				<tr>
-					<td>photo</td>
-					<td>article</td>
+					<td></td> <!-- фото -->
+					<td></td> <!-- артикул -->
 
 					<?php 
 						if ($header)
@@ -24,8 +24,8 @@
 						} 
 					?>
 					
-					<td>description</td>
-					<td>price</td>
+					<td></td> <!-- описание -->
+					<td></td> <!-- цена -->
 					<td></td>  <!-- в корзину -->
 				</tr>
 			</thead>
@@ -33,8 +33,15 @@
 			<?php		
 				if ($productType)
 				{ 
+					$i=0;
+					$priceInfos = array(); // массив с ценами и интервалами для передачи в js
 					foreach( $productType->products as $product ) {
-
+						
+						$priceInfo = array(
+							'intervals'=>json_decode($product->price_intervals),
+							'prices'=>json_decode($product->prices)
+							);
+						array_push($priceInfos, $priceInfo);
 						$values = json_decode($product->values_);
 			?>
 						<tr>
@@ -45,11 +52,19 @@
 							?>
 									<td><? echo $value ?></td>			    	
 							<?  }  ?>
-							<td><? echo $product->description ?></td>
+							<td><p class="description"><? echo $product->description ?></p></td>
 							<td><? echo $product->getPriceString() ?></td>
-							<td><p >в корзину</p></td>
+							<td>
+								<div id="positionPriceWrap-<?=$i?>" >
+									<input type="text" id="productCount-<?=$i?>" class="productCount" value="1">
+									<span>шт. </span>
+									<p class="positionPrice"></p>
+								</div>
+								<p id="to-cart-<?=$i?>" class="to-cart">в корзину</p>
+							</td>
 						</tr>
 			<?
+						$i++;
 				}
 				}	
 			?>
@@ -81,7 +96,7 @@
 			</table>
 			
 
-			<div id="to_cart" class="button_cart-product">В корзину</div>
+			
 		
 	
 </div>
@@ -98,23 +113,62 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-
+	var priceInfos = JSON.parse('<?=json_encode($priceInfos) ?>');
+	
    $('#productTable').dataTable({
+   			dom:"t",
 		    sPlaceHolder : 'head:before',
-		    "aoColumnDefs": [ 
-		    	{
-		    		"aTargets": [ 0, -3, -1 ],
-		    		"bSortable": false
-		    	},
-		    	{
-		    		"aTargets": [ -3 ],
-		    		"sClass": "description",
-		    	},
+		    // aoColumnDefs: [ 
+		    // 	{
+		    // 		"aTargets": [ 0, -3, -1 ],
+		    // 		"bSortable": false
+		    // 	},
+		    // 	{
+		    // 		"aTargets": [ -3 ],
+		    // 		"sClass": "description",
+		    // 	},
 
-		    ],
+		    // ],
 
-		    "fnDrawCallback": function( oSettings ){
-  				$('.description').jTruncate({ 
+		    columnDefs: [
+		 
+				{   //столбец с описанием
+					targets: [ 5 ],  
+					//className: "description",
+					orderable: "false",
+				},
+				{   //столбец с ценами
+					targets: [ 6 ],  
+					width: "195px",
+				},
+				{   //столбец в корзину
+					targets: [ 7 ],  
+					width: "70px",
+				}
+
+			],
+
+		    
+
+
+		})
+   		.columnFilter({
+   			sPlaceHolder: "head:before",
+   			aoColumns: 
+   			[
+   				null,
+   				null,
+   				//variable columns 
+   				<?=$stringVariableColumns ?>
+
+   				null,
+   				null,
+   				null
+   			]
+		}
+		);
+
+$('.description').jTruncate({ 
 					length: 100, 
 					minTrail: 0, 
 					moreText: "[читать дальше]", 
@@ -123,25 +177,18 @@ $(document).ready(function() {
 					moreAni: "fast", 
 					lessAni: "fast"
 					});
-  			}
-		})
-   		.columnFilter({
 
-   			aoColumns: 
-   			[
-   				null,
-   				{ type: "text" },
-   				//variable columns 
-   				<?=$stringVariableColumns ?>
+$('.productCount').keyup(function(){
+	var i = $(this).attr('id').substring(13);
+	console.log(priceInfos[i]);
+});
 
-   				null,
-   				{ type: "text" },
-   				null
-   			]
-		}
-		);
+
+$('.to-cart').click(function(){
+	var i = $(this).attr('id').substring(8);
+	console.log(priceInfos[i]);
+});
 
 
 } );
-
 </script>
