@@ -2,10 +2,12 @@
 class ProductInCart extends Products implements IECartPosition
 {
 	public $name;
+	public $article;
 	public $attributes;
 	public $count;
-	public $priceForOne;
-	public $discount;
+	public $prices;
+	public $intervals;
+	public $priceForThisCount;
 	public $productId;
 
  	
@@ -19,10 +21,17 @@ class ProductInCart extends Products implements IECartPosition
 	}
 	*/
 
-	public function getSumPrice()
+	function calculatePriceForThisCount()
 	{
-		$ret = $priceForOne*$count;
-		return $ret;
+        for ($i=0;$i<count($this->intervals);$i++)
+        {
+            if ($this->count<=$this->intervals[$i] || $this->intervals[$i]==-1)
+            {
+                $this->priceForThisCount = $this->count*$this->prices[$i];
+                break;
+            }
+        }
+        
 	}
 
 	function getId(){

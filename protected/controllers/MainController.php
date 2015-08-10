@@ -27,21 +27,21 @@ class MainController extends Controller
 	{
 		//$products = Products::model()->findAll();
 
-		$products = ProductTypes::model()->with('products')->findAll();
+		$productTypes = ProductTypes::model()->findAll();
 
 		$cs = Yii::app()->clientScript;
 		$cs->registerScriptFile('/js/jquery.js');
 		$cs->registerScriptFile('/js/responsiveslides.min.js');
-		$this->render('index',array('products' => $products));
+		$this->render('index',array('productTypes' => $productTypes));
 	}
 
 	public function actionProducts()
 	{
-		$products = Products::model()->findAll();
+		$productTypes = ProductTypes::model()->findAll();
 		$cs = Yii::app()->clientScript;
 		$cs->registerScriptFile('/js/jquery.js');
 
-		$this->render('products',array('products' => $products));
+		$this->render('products',array('productTypes' => $productTypes));
 	}
 
 
@@ -137,17 +137,18 @@ class MainController extends Controller
 	public function actionToCart()
 	{
 		//var_dump($_POST['name']);
-		$product = Products::model()->findByPk($_POST['id']);
+		//$product = Products::model()->findByPk($_POST['id']);
 
 		$productInCart =  new ProductInCart();
 	
 		$productInCart->name = $_POST['name'];
 		$productInCart->attributes = $_POST['attributes'];
 		$productInCart->count = $_POST['count'];
-		$productInCart->priceForOne = $_POST['price'];
-		$productInCart->discount = $_POST['discount'];
+		$productInCart->prices = $_POST['prices'];
+		$productInCart->intervals = $_POST['intervals'];
+		$productInCart->priceForThisCount = $_POST['priceForThisCount'];
 		$productInCart->productId = $_POST['productId'];
-
+		$productInCart->article = $_POST['article'];
 		$productInCart->id = $_POST['id'];
 		
 		$cart = new EShoppingCart;
@@ -159,22 +160,26 @@ class MainController extends Controller
 
 	public function actionCart()
 	{
-		$cs = Yii::app()->clientScript;
-		$cs->registerScriptFile('/js/jquery.js');
-		$cs->registerScriptFile('/js/ajaxupload.min.js');
-
+		Yii::app()->clientScript->registerCoreScript('jquery');
+		Yii::app()->clientScript->registerCoreScript('ajaxupload');
+		
+		
 
 		$cart = new EShoppingCart;
 		$cart->init();
 		$this->render("cart",array("cart"=>$cart));
 	}
 
-	public function actionDeletePosition($id)
+	public function actionDeletePosition()
 	{
 		$cart = new EShoppingCart;
 		$cart->init();
-		$cart->remove($id);
-		$this->redirect(array('main/cart'));
+		$cart->remove($_POST['positionId']);
+		//если корзина пуста вырнем false
+		$positions = $cart->getPositions();
+		if (count($positions)==0) echo "false";
+		else echo "true";
+
 	}
 
 	public function actionUpdatePositionCount()
@@ -183,46 +188,25 @@ class MainController extends Controller
 
 		$cart = new EShoppingCart;
 		$cart->init();
+		
 		$positions = $cart->getPositions();
+		
 
-		//расчёт новой скидки (соответствующей новому количеству)
-		$product = Products::model()->findByPk($positions[$_POST['positionId']]->productId);
-		$dis_split = explode(';',$product->discount);
-		$dis_intervals = array();
-		$dis_values = array();
-		for ($i=0,$k=0;$i<count($dis_split);$i+=2,$k++)
-		{
-			$dis_intervals[$k] = $dis_split[$i];
-			$dis_values[$k] = $dis_split[$i+1];
-		}
-		$dis_interval_num = count($dis_intervals) - 1;
-		for ($i=0;$i<count($dis_intervals);$i++)
-		{
-			if ($dis_intervals[$i]!='i' && $_POST['newCount']<= $dis_intervals[$i] )
-			{
-				$dis_interval_num = $i;
-				break;
-			}
-		}
-		$discount = $dis_values[$dis_interval_num];
-
-
-		$cart->updateCount($positions[$_POST['positionId']],$_POST['newCount'],$discount);
-        // updateCount - пересчитывет к томе же priceForOne
+		$cart->updateCount($positions[$_POST['positionId']],$_POST['newCount']);
+        
 
 		$totalPrice = 0;
 		foreach ($positions as $position)
 		{
-			$totalPrice+=round($position->count*$position->priceForOne * (1 - $position->discount/100),0);
+			$totalPrice+=$position->priceForThisCount;
 		}
 
-		$positionPrice = round($positions[$_POST['positionId']]->priceForOne * $_POST['newCount'] * (1 - $position->discount/100),0);
+		
 		
 		$return = array();
-		$return["discount"] = $discount;
+		
 		$return["totalPrice"] = $totalPrice;
-		$return["positionPrice"] = $positionPrice;
-		$return["priceForOne"] = $positions[$_POST['positionId']]->priceForOne;
+		$return["priceForThisCount"] = $positions[$_POST['positionId']]->priceForThisCount;
 		echo json_encode($return);
 	}
 
@@ -236,7 +220,7 @@ class MainController extends Controller
 			$productInCart->name = $_POST['Доставка'];
 			$productInCart->id = 100;
 			$productInCart->count = 1;
-			$productInCart->priceForOne = 200;
+			$productInCart->priceForThisCount = 200; //Цена доставки!!!
 			$cart->put($productInCart);
 		}
 		else
@@ -248,7 +232,7 @@ class MainController extends Controller
 		$positions = $cart->getPositions();
 		foreach ($positions as $position)
 		{
-			$totalPrice+=round($position->count*$position->priceForOne * (1 - $position->discount/100),0);
+			$totalPrice+=$position->priceForThisCount;
 		}
 		echo $totalPrice;
 	}
@@ -278,7 +262,7 @@ class MainController extends Controller
 		foreach ($positions as $position)
 		{	
 			if ($position->id!=100) //если это не доставка
-			$tradeInfo=$tradeInfo.$position->name."  ".$position->attributes."   -".$position->count."шт  (цена за шт.:".$position->priceForOne."р.)  :".$position->count*$position->priceForOne."р.\r\n";
+			$tradeInfo=$tradeInfo.$position->name."  ".$tradeInfo.$position->article." ".$position->attributes."   -".$position->count."шт  (цена за шт.:".$position->priceForThisCount/$position->count."р.)  :".$position->priceForThisCount."р.\r\n";
 		}
 
 

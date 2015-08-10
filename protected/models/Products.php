@@ -126,11 +126,32 @@ class Products extends CActiveRecord
 		for ($i=0;$i<count($prices);$i++)
 		{
 			$secondInt = $intervals[$i];
-			if ($secondInt!=-1)	$priceStr = $priceStr."<tr><td>$firstInt-$secondInt шт.</td><td>-$prices[$i] р.</td></tr>";
-			else $priceStr = $priceStr."<tr><td> > $firstInt шт.</td><td>-$prices[$i] р.</td></tr>";
-			$firstInt = $secondInt;
+			if ($secondInt!=-1)
+			{
+				$priceStr = $priceStr."<tr><td>$firstInt-$secondInt шт.</td><td>-$prices[$i] р.</td></tr>";
+			}
+			else 
+			{
+				$firstInt--; //что бы множества не пересекались
+				$priceStr = $priceStr."<tr><td> > $firstInt шт.</td><td>-$prices[$i] р.</td></tr>";
+			}
+			$firstInt = $secondInt+1;
 		}
 		$priceStr = $priceStr."</table>";
 		return $priceStr;
+	}
+
+	//возвращает названия и значения свойств в виде строки, для занесения в productInCart и вывода в корзине
+	public function getAttributesString($productType)
+	{
+		$properties = json_decode($productType->properties);
+		$values = json_decode($this->values_);
+
+		$attributesStr = "";
+		for ($i=0;$i<count($properties);$i++)
+		{
+			$attributesStr = $attributesStr.'<span class=\"properityName\">'.$properties[$i].': </span>'.$values[$i].', ';
+		}
+		return $attributesStr;
 	}
 }

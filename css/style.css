@@ -543,6 +543,11 @@ input.submit {
  *  SHOW PRODUCT
  */
 
+.mainWrapper-showProduct .productTitle {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
 .product-container {
     width: 100%;
     margin: 40px 0 0;
@@ -568,7 +573,7 @@ input.submit {
 }
 
 
-.image-block {
+#productTable .image-block {
     position: relative;
 
     float: left;
@@ -577,26 +582,26 @@ input.submit {
     padding: 0;
 }
 
-.promo-image {
+#productTable .promo-image {
     position: absolute;
     top: 0;
     left: 0;
 }
 
-.mini-image {
+#productTable .mini-image {
     vertical-align: top;    
 }
 
-.truncate_more_link {
+#productTable .truncate_more_link {
     color: #78167b;
 }
 
-.productCount {
+#productTable .positionCount {
     width: 30px;
     text-align: right;
 }
 
-.to-cart {
+#productTable .to-cart {
     font-family: Hypatia-SansPro-Semibold;
     font-size: 12px;
 
@@ -612,7 +617,7 @@ input.submit {
     background: #FF2828;
 }
 
-.to-cart:hover {
+#productTable .to-cart:hover {
     opacity: .8;
 }
 
@@ -748,8 +753,8 @@ input.classTextField:before {
     color: red;
 }
 
-.cart-kostil {
-    margin: 0 97px;
+.cart-dostavka {
+    margin: 20px 25px 0;
 }
 
 .hr-cart {
@@ -758,6 +763,7 @@ input.classTextField:before {
 
 h2.title_h1 {
     font-family: Hypatia-Sans-Pro-ExtraLight;
+    
 }
 
 #beznal_submit,
@@ -982,16 +988,42 @@ textarea:focus, input:active, input:focus, input:checked{
     text-align: center;
 }
 
-.delete {
-    display: block;
-
-    height: 30px;
-
-    background: url(../images/delete.png) no-repeat center;
+.cart-table thead th {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    color: #555;
+    padding-left: 5px;
 }
 
-.cart-table .cart-count {
+.cart-table tbody td {
+    border-bottom: 1px solid #eee;
+}
+
+.cart-table tbody tr:hover {
+    background-color: #F9F9F9;
+}
+
+.cart-table  .productName {
+    padding-left: 10px;
+    color: #3d3d3d;
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+.cart-table .attributes {
+    padding-left: 5px;
+}
+
+.cart-table .properityName
+{
+    color: #d20303;
+    font-weight: bold;
+}
+
+
+.cart-table .positionCount {
     width: 50px;
+    text-align: right;
 }
 
 #dostavka {

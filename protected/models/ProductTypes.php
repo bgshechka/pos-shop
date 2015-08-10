@@ -8,6 +8,7 @@
  * @property string $name
  * @property string $properties
  * @property string $values_
+ * @property string $photo
  *
  * The followings are the available model relations:
  * @property Products[] $products
@@ -30,11 +31,11 @@ class ProductTypes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('name, properties, values_', 'required'),
-			array('name', 'required'),
+			array('name, properties, values_, photo', 'required'),
+			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, properties, values_', 'safe', 'on'=>'search'),
+			array('id, name, properties, values_, photo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +61,7 @@ class ProductTypes extends CActiveRecord
 			'name' => 'Name',
 			'properties' => 'Properties',
 			'values_' => 'Values',
+			'photo' => 'Photo',
 		);
 	}
 
@@ -85,6 +87,7 @@ class ProductTypes extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('properties',$this->properties,true);
 		$criteria->compare('values_',$this->values_,true);
+		$criteria->compare('photo',$this->photo,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

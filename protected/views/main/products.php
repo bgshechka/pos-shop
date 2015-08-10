@@ -5,16 +5,16 @@
 				<?
 				
 
-				foreach ($products as $product)
+				foreach ($productTypes as $productType)
 				{
 
-					$url=$this->createUrl("main/showProduct",array("id"=>$product->id));
+					$url=$this->createUrl("main/showProduct",array("id"=>$productType->id));
 				?>
 				<li><a href="<?= $url ?>">
 						<div class="product-thumbnail-container">
-							 <span class="pt-container-helper"></span><img src="<?=$product->photo?>" alt="">
+							 <span class="pt-container-helper"></span><img src="/images/<?=$productType->photo?>" alt="">
 						</div>
-						<span class="product-name"><?=$product->name ?></span>
+						<span class="product-name"><?=$productType->name ?></span>
 						<div class="button button-product-position button-invisible">КУПИТЬ</div>
 					</a>
 				</li>

@@ -122,7 +122,7 @@ class EShoppingCart extends CMap {
         $this->saveState();
     }
 
-    public function updateCount(IECartPosition $position, $count,$discount) {
+    public function updateCount(IECartPosition $position, $count) {
         if (!($position instanceof CComponent))
             throw new InvalidArgumentException('invalid argument 1, product must implement CComponent interface');
 
@@ -133,7 +133,7 @@ class EShoppingCart extends CMap {
         $position->setRefresh($this->refresh);
 
         $position->count = $count;
-        $position->discount= $discount;
+        $position->calculatePriceForThisCount();
         
         parent::add($key, $position);
 

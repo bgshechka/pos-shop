@@ -19,7 +19,6 @@
 		<tr>
 			<th class="left">Продукт</th>
 			<th>Количество</th>
-			<th>Скидка</th>
 			<th>Цена</th>
 			<th></th>
 		</tr>
@@ -38,33 +37,26 @@
 			{
 				//если в корзине есть доставка поставим флаг
 				if ($position->id == 100) $dostavka = true;
-				$totalPrice+= round($position->priceForOne * $position->count * (1 - $position->discount/100),0);
+				$totalPrice+= round($position->priceForThisCount,0);
 				if ($position->id != 100) { //позицию доставки выводить не надо
 		?>	
-			<tr>
-				<td width=300px class="left">
-					<p><?=$position->name ?> </p>
-					<p><?=$position->attributes ?> </p>
+			<tr id="positionTr-<?=$position->id?>">
+				<td width=500px class="left">
+					<p class="productName"><?=$position->name.' '.$position->article ?> </p>
+					<p class="attributes"><?=$position->attributes ?> </p>
 				</td>
 
 				<td width=149px>
-					<? echo CHtml::textField('count'.$position->id, $position->count, array('class'=>'cart-count')); ?>
+					<input type="text" class="positionCount" id="positionCount-<?=$position->id?>" value="<?=$position->count?>">
+	
 				</td>
-				<td>
-					<?
-					if ($position->discount!=0) echo CHtml::tag("span",array("id" => "dis".$position->id),$position->discount."%");
-					else echo CHtml::tag("span",array("id" => "dis".$position->id),"-");
-
-					?>
-
+								
+				<td width=100px>
+					<div id="positionPrice-<?=$position->id?>" class="positionPrice"><?= $position->priceForThisCount ?></div>
 				</td>
 				<td width=100px>
-					
-					<div id="pp<?=$position->id?>" class="pricePosition"><?= round($position->priceForOne*$position->count * (1 - $position->discount/100),0) ?></div>
-				</td>
-				<td width=100px>
-					<? $url=$this->createUrl("main/deletePosition",array("id"=>$position->id)) ?>
-					<a href="<?=$url?>"><div class="delete"></div></a>
+					<? //$url=$this->createUrl("main/deletePosition",array("id"=>$position->id)) ?>
+					<img id="deletePosition-<?=$position->id?>" class="deletePosition" width=20 src="/images/delete.png">
 				</td>
 			</tr>
 
@@ -77,9 +69,9 @@
 		</tbody>
 		</table>
 		
-		<div  class="cart-kostil">
-		<hr align="left" class="hr-cart">
-		<p style="font-weight: bold" >Дополнительные услуги</p>
+		<div  class="cart-dostavka">
+		<!-- <hr align="left" class="hr-cart"> -->
+		<p style="font-weight: bold;margin-left:5px;" >Дополнительные услуги</p>
 		<hr align="left" class="hr-cart">
 
 		<table>
@@ -112,14 +104,16 @@
 		</div>
 
 		<?
+			$emptyCartStyle = "display:none";
 			}
 			else 
 			{
-		?>
-		<div id="empty-cart-title">Корзина пуста</div>
-		<?
+		
+				
+		
 			}
 		?>
+		<div id="empty-cart-title" style="<?=$emptyCartStyle?>">Корзина пуста</div>
 		</div>
 	</div>
 
@@ -203,6 +197,10 @@
 
 
 <script type="text/javascript">
+
+	
+
+
 	var dostavka;
 	<? if ($dostavka) echo "dostavka=\"on\";";
 		else echo "dostavka=\"off\";";
@@ -260,16 +258,16 @@
 		$("#totalPrice").html(data);
 	}
 
-	var positionId;
+	
 
-	$(".cart-count").keyup(function()
+	$(".positionCount").keyup(function()
     {
     	if (!isNaN(parseInt($(this).val()))) 
     	{
     		
     		$(this).css("border","1px solid #C1BCBC");
     		//вычислим id позиции
-    		positionId = $(this).attr('id').substring(5);
+    		var positionId = $(this).attr('id').substring(14);
     		
     		<? $url = $this->createUrl("main/updatePositionCount"); ?>
     		
@@ -279,7 +277,19 @@
 			    positionId:positionId,
 			    newCount:$(this).val()
 			  },
-			  onChangeCountAjaxSuccess
+			  function (data)
+				{
+				  var j_data = JSON.parse(data);
+				
+				  
+				  //получим новую цену позиции и обновим вывод
+				  var priceId = "#positionPrice-" + positionId;
+
+				  $(priceId).html(j_data['priceForThisCount']);
+				  $("#totalPrice").html(j_data['totalPrice']);
+
+				  
+				}
 			); 
 
     	}
@@ -287,21 +297,38 @@
     	//console.log(parseInt($("#count").val()));
     }); 
 
-    function onChangeCountAjaxSuccess(data)
-	{
-	  var j_data = JSON.parse(data);
-	
-	  
-	  //получим новую цену позиции и обновим вывод
-	  var priceId = "#pp" + positionId;
-	  $(priceId).html(j_data['positionPrice']);
-	  $("#totalPrice").html(j_data['totalPrice']);
+   
 
-	  //получим новую скидку и обновим вывод
-	  var discountId="#dis" + positionId;
-	  if (j_data['discount']!=0) $(discountId).html(j_data['discount'] + '%');
-	  else $(discountId).html('-');
-	}
+
+	$('.deletePosition').click(function(){
+		var positionId = $(this).attr('id').substring(15);
+    	<? $url = $this->createUrl("main/deletePosition"); ?>
+    	var thisEl = $(this);
+    	$.post(
+			"<?= $url ?>",
+			{
+			   positionId:positionId,
+			},
+			function (data)
+			{
+				
+				if (data=="true")
+				{
+					
+					$('#positionTr-'+positionId).remove();
+				}
+				else //корзина пуста
+				{
+					$('.cart-table').hide();
+					$('.cart-dostavka').hide();
+					$('.cart-fullSum').hide();
+					$('#empty-cart-title').show();
+
+				}
+			}
+		);
+
+	});
 
 	
 	//НАЛИЧНЫЙ РАСЧЕТ
