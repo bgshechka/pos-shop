@@ -4,6 +4,25 @@
 }
 
 #alert_placeholder {
+	position: fixed;
+	top:0;
+	width:500px;
 	margin-top: 10px;
 	margin-bottom: 5px;
+}
+
+#photo-wrapper {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#upload-news-photo {
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+
+#footer {
+	width: 100%;
+	height: 100px;
 }

@@ -5729,3 +5729,28 @@ Stack trace:
 REQUEST_URI=/index.php?r=admin/news
 HTTP_REFERER=http://pos-shop/index.php?r=admin/products
 ---
+2015/08/11 14:09:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "news".' in D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php:483
+Stack trace:
+#0 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(270): CController->missingAction('news')
+#1 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('news')
+#2 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/news')
+#3 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\OpenServer\domains\pos-shop\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=admin/news
+HTTP_REFERER=http://pos-shop/index.php?r=admin/about
+---
+2015/08/11 15:56:49 [error] [php] imagepng(/var/www/aaa1ru/data/www/pos/images/news/about_logo.png): failed to open stream: No such file or directory (D:\OpenServer\domains\pos-shop\protected\extensions\simpleImage\simpleImage.php:30)
+Stack trace:
+#0 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(49): AdminController->actionUploadNewsPhotoAjax()
+#1 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(286): AdminController->runAction()
+#3 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(265): AdminController->runActionWithFilters()
+#4 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): AdminController->run()
+#5 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 D:\OpenServer\domains\pos-shop\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=admin/uploadNewsPhotoAjax
+in D:\OpenServer\domains\pos-shop\protected\extensions\simpleImage\simpleImage.php (30)
+in D:\OpenServer\domains\pos-shop\protected\controllers\AdminController.php (321)
+in D:\OpenServer\domains\pos-shop\index.php (13)
