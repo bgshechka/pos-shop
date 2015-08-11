@@ -11,7 +11,7 @@
 	$positions = $cart->getPositions();
 	$dostavka = false;
 	$totalPrice = 0;
-	if (count($positions)!=0)
+	if ($cart->getItemsCount() !=0)
 	{
 ?>
 		<table class="cart-table">
@@ -52,7 +52,7 @@
 				</td>
 								
 				<td width=100px>
-					<div id="positionPrice-<?=$position->id?>" class="positionPrice"><?= $position->priceForThisCount ?></div>
+					<div id="positionPrice-<?=$position->id?>" class="positionPrice"><?= $position->priceForThisCount ?>р.</div>
 				</td>
 				<td width=100px>
 					<? //$url=$this->createUrl("main/deletePosition",array("id"=>$position->id)) ?>
@@ -86,13 +86,13 @@
 						?>
 					</td>
 					<td width=100px id="dostavka-price">
-						<? if ($dostavka) echo "+200" ?>
+						<? if ($dostavka) echo "+200р." ?>
 					</td>
 				</tr>
 		</table>
 		<div class="cart-fullSum">
 			<span>Итого:</span>
-			<span id="totalPrice"><?=$totalPrice ?></span>
+			<span id="totalPrice"><?=$totalPrice ?>р.</span>
 		</div>
 
 		<div class="cart-pay_container">
@@ -223,7 +223,7 @@
 		
 		if ( $(this).val()=="yes" )
 		{
-			$("#dostavka-price").html("+200");
+			$("#dostavka-price").html("+200р");
 			dostavka="on";
 
 			//в окне подтверждения заказа активировать поле с адресом
@@ -255,7 +255,7 @@
 	//при включении/отключении доставки - обновим итого
 	function onSwitchDostavkaAjaxSuccess(data)
 	{
-		$("#totalPrice").html(data);
+		$("#totalPrice").html(data+'р.');
 	}
 
 	
@@ -286,7 +286,7 @@
 				  var priceId = "#positionPrice-" + positionId;
 
 				  $(priceId).html(j_data['priceForThisCount']);
-				  $("#totalPrice").html(j_data['totalPrice']);
+				  $("#totalPrice").html(j_data['totalPrice']+'р.');
 
 				  
 				}
@@ -309,13 +309,15 @@
 			{
 			   positionId:positionId,
 			},
-			function (data)
+			function (countOfPositions)
 			{
 				
-				if (data=="true")
+				if (countOfPositions!=0)
 				{
-					
+					console.log(countOfPositions);
 					$('#positionTr-'+positionId).remove();
+					$("#cartCount").html(" (" + countOfPositions + ")");
+
 				}
 				else //корзина пуста
 				{
@@ -323,7 +325,7 @@
 					$('.cart-dostavka').hide();
 					$('.cart-fullSum').hide();
 					$('#empty-cart-title').show();
-
+					$("#cartCount").html("");
 				}
 			}
 		);

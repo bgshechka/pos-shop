@@ -249,7 +249,7 @@ $(document).ready(function() {
 	function onToCartAjaxSuccess(data)
 	{
 	  // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-	  $("#cartcount").html("Корзина (" + data + ")");
+	  $("#cartCount").html(" (" + data + ")");
 	  $("#success_window").show();
        $("#podlogka").show();
 	}

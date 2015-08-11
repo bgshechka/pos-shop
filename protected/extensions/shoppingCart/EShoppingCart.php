@@ -161,7 +161,7 @@ class EShoppingCart extends CMap {
         $count = 0;
         foreach ($this as $position)
         {
-            if ($position->id != 100) $count += $position->getQuantity();
+            if ($position->id != 100) $count++;
         }
 
         return $count;

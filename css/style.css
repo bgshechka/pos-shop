@@ -1,4 +1,3 @@
-/* reset browser styles */
 html,
 body,
 div,
@@ -386,12 +385,10 @@ ul.mainNav li a:hover {
 
 /*
 #slide1 {
-
 	background-image: url(../images/slider-1-bg-rp.png); 
     background-repeat: repeat; 
     position: relative;
 }
-
 #slide2 {
 	background-image: url(../images/slider-2-bg-rp.png); 
     background-repeat: repeat; 
@@ -405,18 +402,13 @@ ul.mainNav li a:hover {
 	position: relative;
 	width: 960px;
 }
-
 .sm_prev, .sm_next {
 	top: 58% !important;
 	border-color: #FF2828 !important;
 }
-
 .sm_nav {
 	display: none !important;
 }
-
-
-
 .slider2__phone2 {
 	position: absolute;
 	left: 0;

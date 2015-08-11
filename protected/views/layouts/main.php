@@ -53,10 +53,10 @@
 			    	$cart = new EShoppingCart;
 					$cart->init();
 					$c=$cart->getItemsCount();
-					$cartText = "Корзина";
-					if ($c>0) $cartText .= ' ('.$c.')';
+					
+					if ($c>0) $cartCount .= ' ('.$c.')';
 				?>
-			    <li><a href="<?= $url ?>" id="cartcount" class="navLink"><?=$cartText?></a></li>
+			    <li><a href="<?= $url ?>" class="navLink">Корзина <span id="cartCount"><?=$cartCount?></span></a></li>
 			</ul>
 
 			<div class="header-contacts">

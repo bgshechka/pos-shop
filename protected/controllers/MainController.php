@@ -175,10 +175,7 @@ class MainController extends Controller
 		$cart = new EShoppingCart;
 		$cart->init();
 		$cart->remove($_POST['positionId']);
-		//если корзина пуста вырнем false
-		$positions = $cart->getPositions();
-		if (count($positions)==0) echo "false";
-		else echo "true";
+		echo $cart->getItemsCount();
 
 	}
 

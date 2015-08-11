@@ -8,7 +8,7 @@ class AdminController extends Controller
 
 
 	public $layout='/layouts/admin';
-
+	public $defaultAction = 'products';
 	// public function filters()
  //    {
  //        return array(
@@ -31,127 +31,137 @@ class AdminController extends Controller
 
 
 
-	public function actionIndex()
+	public function actionProducts()
 	{
-		$products = Products::model()->findAll();
+		// $products = Products::model()->findAll();
+		// $aboutPage = Pages::model()->find('type=:type',array(':type'=>'about'));
+		// $news = Pages::model()->findAll('type=:type',array(':type'=>'news'));
+		// $firstNews = $news[0];
+
+		// $newsInfo = array();
+		// foreach ($news as $new)
+		// {
+		// 	$tmpInfo = array();
+		// 	$tmpInfo['id'] = $new->id;
+		// 	$tmpInfo['title'] = $new->title;
+		// 	array_push($newsInfo, $tmpInfo);
+		// }
+
+		// $cs = Yii::app()->clientScript;
+		// $cs->registerCssFile('/css/admin.css');
+		// $cs->registerScriptFile('/js/jquery.js');
+		// $cs->registerScriptFile('/js/ckeditor/ckeditor.js');
+		// $cs->registerScriptFile('/js/ajaxupload.min.js');
+		// $cs->registerScriptFile('/js/jquery.jeditable.js');
+
+		// $this->render('index',array('products' => $products,
+		// 							'aboutPage' => $aboutPage,
+		// 							'firstNews' => $firstNews,
+		// 							'newsInfo' => $newsInfo,
+
+		// 	));
+
+		$this->render('products');
+	}
+
+	public function actionAbout()
+	{
 		$aboutPage = Pages::model()->find('type=:type',array(':type'=>'about'));
-		$news = Pages::model()->findAll('type=:type',array(':type'=>'news'));
-		$firstNews = $news[0];
-
-		$newsInfo = array();
-		foreach ($news as $new)
-		{
-			$tmpInfo = array();
-			$tmpInfo['id'] = $new->id;
-			$tmpInfo['title'] = $new->title;
-			array_push($newsInfo, $tmpInfo);
-		}
-
 		$cs = Yii::app()->clientScript;
-		$cs->registerCssFile('/css/admin.css');
-		$cs->registerScriptFile('/js/jquery.js');
 		$cs->registerScriptFile('/js/ckeditor/ckeditor.js');
-		$cs->registerScriptFile('/js/ajaxupload.min.js');
-		$cs->registerScriptFile('/js/jquery.jeditable.js');
-
-		$this->render('index',array('products' => $products,
-									'aboutPage' => $aboutPage,
-									'firstNews' => $firstNews,
-									'newsInfo' => $newsInfo,
-
-			));
+		$this->render('about',array('aboutPage'=>$aboutPage));
 	}
 
-	public function actionCreateProduct()
-	{
-		if ($_POST['name']=='')
-		{
-			$this->redirect(array('admin/index'));
-			return;
-		}
+	// public function actionCreateProduct()
+	// {
+	// 	if ($_POST['name']=='')
+	// 	{
+	// 		$this->redirect(array('admin/index'));
+	// 		return;
+	// 	}
 
-		$product = new Products;
-		$product->name = $_POST['name'];
-		$product->discount = 'i;0';
-		$res=$product->save();
-		if ($res==false)
-		{
-			echo "не удалось создать товар.";
-			return;
-		}
+	// 	$product = new Products;
+	// 	$product->name = $_POST['name'];
+	// 	$product->discount = 'i;0';
+	// 	$res=$product->save();
+	// 	if ($res==false)
+	// 	{
+	// 		echo "не удалось создать товар.";
+	// 		return;
+	// 	}
 
-		$this->redirect(array('admin/editProduct','id'=>$product->id));
-	}
+	// 	$this->redirect(array('admin/editProduct','id'=>$product->id));
+	// }
 
-	public function actionDeleteProduct($id)
-	{
-		$product = Products::model()->findByPk($id);
-		if ($product!=null)
-		{
-			//удмлим все значения, связанные с текущим атрибутом и сам атрибут
-			$attributes_AR = Attributes::model()->findAll("product_id=:product_id",array(':product_id' => $product->id));
-			foreach ($attributes_AR as $attribute)
-			{
-				Values::model()->deleteAll("attribute_id=:attribute_id",array(':attribute_id'=>$attribute->id));
-				$attribute->delete();
-			}
+	// public function actionDeleteProduct($id)
+	// {
+	// 	$product = Products::model()->findByPk($id);
+	// 	if ($product!=null)
+	// 	{
+	// 		//удмлим все значения, связанные с текущим атрибутом и сам атрибут
+	// 		$attributes_AR = Attributes::model()->findAll("product_id=:product_id",array(':product_id' => $product->id));
+	// 		foreach ($attributes_AR as $attribute)
+	// 		{
+	// 			Values::model()->deleteAll("attribute_id=:attribute_id",array(':attribute_id'=>$attribute->id));
+	// 			$attribute->delete();
+	// 		}
 
-			$product->delete();
-		}
-		$this->redirect(array('admin/index'));
-	}
+	// 		$product->delete();
+	// 	}
+	// 	$this->redirect(array('admin/index'));
+	// }
 
-	public function actionEditProduct($id=1)
-	{
-		$product = Products::model()->findByPk($id);
+	// public function actionEditProduct($id=1)
+	// {
+	// 	$product = Products::model()->findByPk($id);
 
-		$attributes = Attributes::model()->findAll('product_id=:product_id',array(':product_id'=>$id));
-		$attributes_array = array();
-		foreach ($attributes as $attribute)
-		{
-			$values = Values::model()->findAll(array('condition'=>'attribute_id=:attribute_id',
-												 	'params'=>array(':attribute_id'=>$attribute->id),
-											     ));
+	// 	$attributes = Attributes::model()->findAll('product_id=:product_id',array(':product_id'=>$id));
+	// 	$attributes_array = array();
+	// 	foreach ($attributes as $attribute)
+	// 	{
+	// 		$values = Values::model()->findAll(array('condition'=>'attribute_id=:attribute_id',
+	// 											 	'params'=>array(':attribute_id'=>$attribute->id),
+	// 										     ));
 
-			$values_array = array();
-			foreach ($values as $value)
-			{
-				$tmpValueArray = array();
-				$tmpValueArray["name"] = $value->name;
-				$tmpValueArray["add_price"] = $value->add_price;
-				array_push($values_array, $tmpValueArray);
-			}
+	// 		$values_array = array();
+	// 		foreach ($values as $value)
+	// 		{
+	// 			$tmpValueArray = array();
+	// 			$tmpValueArray["name"] = $value->name;
+	// 			$tmpValueArray["add_price"] = $value->add_price;
+	// 			array_push($values_array, $tmpValueArray);
+	// 		}
 
 
-			$tmpAttributeArray = array();
-			$tmpAttributeArray["name"]=$attribute->name;
-			$tmpAttributeArray["values"]=$values_array;
+	// 		$tmpAttributeArray = array();
+	// 		$tmpAttributeArray["name"]=$attribute->name;
+	// 		$tmpAttributeArray["values"]=$values_array;
 			
-			array_push($attributes_array, $tmpAttributeArray);
-		}
+	// 		array_push($attributes_array, $tmpAttributeArray);
+	// 	}
 
-		//скидки
-		$dis_split = explode(';',$product->discount);
-		$dis_intervals = array();
-		$dis_values = array();
-		for ($i=0,$k=0;$i<count($dis_split);$i+=2,$k++)
-		{
-			$dis_intervals[$k] = $dis_split[$i];
-			$dis_values[$k] = $dis_split[$i+1];
-		}
+	// 	//скидки
+	// 	$dis_split = explode(';',$product->discount);
+	// 	$dis_intervals = array();
+	// 	$dis_values = array();
+	// 	for ($i=0,$k=0;$i<count($dis_split);$i+=2,$k++)
+	// 	{
+	// 		$dis_intervals[$k] = $dis_split[$i];
+	// 		$dis_values[$k] = $dis_split[$i+1];
+	// 	}
 
 
-		$cs = Yii::app()->clientScript;
-		$cs->registerCssFile('/css/admin.css');
-		$cs->registerScriptFile('/js/jquery.js');
-		$cs->registerScriptFile('/js/ajaxupload.min.js');
+	// 	$cs = Yii::app()->clientScript;
+	// 	$cs->registerCssFile('/css/admin.css');
+	// 	$cs->registerScriptFile('/js/jquery.js');
+	// 	$cs->registerScriptFile('/js/ajaxupload.min.js');
 
-		$this->render('editProduct',array('product'=>$product,
-									      'attributes'=>json_encode($attributes_array),
-									      'dis_intervals' => json_encode($dis_intervals),
-									      'dis_values' => json_encode($dis_values),
-			));
-	}
+	// 	$this->render('editProduct',array('product'=>$product,
+	// 								      'attributes'=>json_encode($attributes_array),
+	// 								      'dis_intervals' => json_encode($dis_intervals),
+	// 								      'dis_values' => json_encode($dis_values),
+	// 		));
+	// }
 
 	public function actionUploadPhotoAjax()
 	{
