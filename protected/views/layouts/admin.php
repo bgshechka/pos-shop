@@ -10,8 +10,8 @@
 	<!-- <link href="/css/bootstrap/vertical-nav.css" rel="stylesheet"> -->
 	<!-- <link href="/css/bootstrap/non-responsive.css" rel="stylesheet"> -->
 
-	<script src="/js/jquery.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+	
+  
 </head>
 <body>
 
@@ -47,4 +47,5 @@
     </div><!-- /.container -->
 	
 </body>
+<script src="/js/bootstrap.min.js"></script>
 </html>

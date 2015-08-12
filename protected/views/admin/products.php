@@ -1,16 +1,12 @@
 <h2>Загрузить excel-файл каталога</h2>
 <hr>
 <!--button type="button" class="btn btn-primary" id="btn">Загрузить</button-->
-<button class="UploadButton" id="UploadButton">UploadFile</button>
+<div class="UploadButton btn btn-primary" id="UploadButton">UploadFile</div>
 <div id="loadStatus"></div>
 
 <script type="text/javascript">
-	$( document ).ready(function() {
-		$('#products-nav-item').addClass('active');
-
-	});
-
-	//btn btn-primary
+$( document ).ready(function() {
+	$('#products-nav-item').addClass('active');
 
 	$("#UploadButton").ajaxUpload({
 			<? $url = $this->createUrl('admin/loadPriceAjax'); ?>
@@ -47,5 +43,11 @@
 			//$.post("<?= $url?>");
 
 		}
+
+});
+
+	
+
+	
 
 </script>

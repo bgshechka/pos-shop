@@ -62,6 +62,10 @@ class AdminController extends Controller
 		// 	));
 		// 	
 
+		$cs = Yii::app()->clientScript;
+		$cs->registerScriptFile('/js/jquery.js');
+		$cs->registerScriptFile('/js/ckeditor/ckeditor.js');
+		$cs->registerScriptFile('/js/ajaxupload.min.js');
 		$this->render('products');
 	}
 
@@ -69,6 +73,7 @@ class AdminController extends Controller
 	{
 		$aboutPage = Pages::model()->find('type=:type',array(':type'=>'about'));
 		$cs = Yii::app()->clientScript;
+		$cs->registerScriptFile('/js/jquery.js');
 		$cs->registerScriptFile('/js/ckeditor/ckeditor.js');
 		$this->render('about',array('aboutPage'=>$aboutPage));
 	}

@@ -5790,3 +5790,14 @@ Stack trace:
 REQUEST_URI=/index.php?r=admin/news
 HTTP_REFERER=http://pos-shop/index.php?r=admin/products
 ---
+2015/08/12 11:32:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "news".' in D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php:483
+Stack trace:
+#0 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CController.php(270): CController->missingAction('news')
+#1 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('news')
+#2 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/news')
+#3 D:\OpenServer\domains\yii-1.1.14.f0fee9\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\OpenServer\domains\pos-shop\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=admin/news
+HTTP_REFERER=http://pos-shop/index.php?r=admin/about
+---
