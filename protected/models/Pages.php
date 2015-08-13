@@ -66,6 +66,23 @@ class Pages extends CActiveRecord
 		);
 	}
 
+
+	public static function getNewsInfoForNavs()
+	{
+		$news = Pages::model()->findAll('type=:type',array(':type'=>'news'));
+		$newsInfos = array();
+		foreach ($news as $new)
+		{
+			$newsInfo = array(
+				'title' => $new->title,
+				'url'   => Yii::app()->createUrl('admin/news',array('id'=>$new->id)),
+				);
+			array_push($newsInfos, $newsInfo);
+		}
+
+		return $newsInfos;
+	}
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *

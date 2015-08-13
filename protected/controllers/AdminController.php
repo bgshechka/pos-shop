@@ -29,7 +29,11 @@ class AdminController extends Controller
  //        );
  //    }
 
+	public function getNewsInfoForNavs()
+	{
+		return Pages::model()->getNewsInfoForNavs();
 
+	}
 
 	public function actionProducts()
 	{
@@ -60,12 +64,13 @@ class AdminController extends Controller
 		// 							'newsInfo' => $newsInfo,
 
 		// 	));
-		// 	
+
 
 		$cs = Yii::app()->clientScript;
 		$cs->registerScriptFile('/js/jquery.js');
 		$cs->registerScriptFile('/js/ckeditor/ckeditor.js');
 		$cs->registerScriptFile('/js/ajaxupload.min.js');
+		$cs->registerScriptFile('/js/jquery.js');
 		$this->render('products');
 	}
 
@@ -76,6 +81,16 @@ class AdminController extends Controller
 		$cs->registerScriptFile('/js/jquery.js');
 		$cs->registerScriptFile('/js/ckeditor/ckeditor.js');
 		$this->render('about',array('aboutPage'=>$aboutPage));
+	}
+
+	public function actionNews($id)
+	{
+		$news= Pages::model()->findByPk($id);
+		$cs = Yii::app()->clientScript;
+		$cs->registerScriptFile('/js/jquery.js');
+		$cs->registerScriptFile('/js/ckeditor/ckeditor.js');
+		$cs->registerScriptFile('/js/ajaxupload.min.js');
+		$this->render('news',array('news'=>$news));
 	}
 
 	// public function actionCreateProduct()
