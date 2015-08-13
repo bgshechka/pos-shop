@@ -1,7 +1,7 @@
 <h2>Загрузить excel-файл каталога</h2>
 <hr>
 <!--button type="button" class="btn btn-primary" id="btn">Загрузить</button-->
-<div class="UploadButton btn btn-primary" id="UploadButton">UploadFile</div>
+<div class="UploadButton btn btn-primary" id="UploadButton">Загрузить</div>
 <div id="loadStatus"></div>
 
 <script type="text/javascript">

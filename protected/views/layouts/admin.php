@@ -32,6 +32,8 @@
 				            <li id="news-nav-item"><a href="<?=$url?>">Новости</a></li>
 				            <? $url=$this->createUrl("admin/about"); ?>
 				            <li id="about-nav-item"><a href="<?=$url?>">Текст "о нас"</a></li>
+				            <? $url=$this->createUrl("admin/trades"); ?>
+				            <li id="trades-nav-item"><a href="<?=$url?>">Заказы</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3">

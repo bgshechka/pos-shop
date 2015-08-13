@@ -553,4 +553,18 @@ public function addXLS($file_path)
 		$this->addXLS($fileName);
 	}
 
+
+	public function actionTrades()
+	{
+		$trades = Trades::model()->findAll();
+
+		Yii::app()->clientScript->registerCoreScript('jquery');
+		Yii::app()->clientScript->registerCoreScript('ajaxupload');
+		Yii::app()->clientScript->registerCoreScript('datatables');
+		Yii::app()->clientScript->registerCoreScript('jTruncate');
+
+		Yii::app()->clientScript->registerCssFile('/css/jquery.dataTables.min.css');
+
+		$this->render('trades', array('trades'=>$trades));		
+	}
 }
